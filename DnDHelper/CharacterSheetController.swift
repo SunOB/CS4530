@@ -18,6 +18,7 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate {
         view = CharacterSheet()
         contentView.delegate = self
          navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(clickedBack)), animated: true)
+        self.navigationController?.navigationBar.isTranslucent = false;
     }
     
     override func viewDidLoad() {
