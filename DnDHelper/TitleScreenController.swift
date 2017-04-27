@@ -26,7 +26,6 @@ class TitleScreenController: UIViewController, TitleScreenDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = "D&D 5e All-In-One"
     }
 
     override func didReceiveMemoryWarning() {

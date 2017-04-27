@@ -29,6 +29,12 @@
 		CE8670E21EB15E5900736BBD /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670E11EB15E5900736BBD /* Campaign.swift */; };
 		CE8670E61EB15F0200736BBD /* DungeonMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670E51EB15F0200736BBD /* DungeonMaster.swift */; };
 		CE8670E81EB15F7D00736BBD /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670E71EB15F7D00736BBD /* Sound.swift */; };
+		CE8670EA1EB1647E00736BBD /* PlayerBackstoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670E91EB1647E00736BBD /* PlayerBackstoryView.swift */; };
+		CE8670EC1EB1655900736BBD /* PlayerBackstoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670EB1EB1655900736BBD /* PlayerBackstoryController.swift */; };
+		CE8670EE1EB16EAD00736BBD /* SpellbookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670ED1EB16EAD00736BBD /* SpellbookController.swift */; };
+		CE8670F01EB16FF100736BBD /* SpellbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */; };
+		CE8670F61EB1776E00736BBD /* SpellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670F51EB1776E00736BBD /* SpellCell.swift */; };
+		CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670F71EB1845100736BBD /* SpellCollectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +62,12 @@
 		CE8670E11EB15E5900736BBD /* Campaign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
 		CE8670E51EB15F0200736BBD /* DungeonMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DungeonMaster.swift; sourceTree = "<group>"; };
 		CE8670E71EB15F7D00736BBD /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		CE8670E91EB1647E00736BBD /* PlayerBackstoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerBackstoryView.swift; sourceTree = "<group>"; };
+		CE8670EB1EB1655900736BBD /* PlayerBackstoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerBackstoryController.swift; sourceTree = "<group>"; };
+		CE8670ED1EB16EAD00736BBD /* SpellbookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookController.swift; sourceTree = "<group>"; };
+		CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookCell.swift; sourceTree = "<group>"; };
+		CE8670F51EB1776E00736BBD /* SpellCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellCell.swift; sourceTree = "<group>"; };
+		CE8670F71EB1845100736BBD /* SpellCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellCollectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +126,11 @@
 				CE1561C41EAC26E900EF04A5 /* CollectionView.swift */,
 				CE1561B91EAC21FC00EF04A5 /* TitleScreen.swift */,
 				CE1561C01EAC260F00EF04A5 /* CharacterCell.swift */,
+				CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */,
 				CE1561C61EAC290C00EF04A5 /* CharacterSheet.swift */,
+				CE8670E91EB1647E00736BBD /* PlayerBackstoryView.swift */,
 				CE8670D11EB14D5D00736BBD /* SpellbookView.swift */,
+				CE8670F51EB1776E00736BBD /* SpellCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -126,6 +141,9 @@
 				CE1561A11EAC07D000EF04A5 /* TitleScreenController.swift */,
 				CE1561C21EAC26A500EF04A5 /* CharacterCollectionController.swift */,
 				CE1561C81EAC32E300EF04A5 /* CharacterSheetController.swift */,
+				CE8670EB1EB1655900736BBD /* PlayerBackstoryController.swift */,
+				CE8670ED1EB16EAD00736BBD /* SpellbookController.swift */,
+				CE8670F71EB1845100736BBD /* SpellCollectionController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -228,6 +246,7 @@
 			files = (
 				CE8670D21EB14D5D00736BBD /* SpellbookView.swift in Sources */,
 				CE1561C51EAC26E900EF04A5 /* CollectionView.swift in Sources */,
+				CE8670EE1EB16EAD00736BBD /* SpellbookController.swift in Sources */,
 				CE1561B31EAC083700EF04A5 /* Character.swift in Sources */,
 				CE1561B51EAC0E8A00EF04A5 /* Spellbook.swift in Sources */,
 				CE8670E61EB15F0200736BBD /* DungeonMaster.swift in Sources */,
@@ -236,11 +255,16 @@
 				CE1561BA1EAC21FC00EF04A5 /* TitleScreen.swift in Sources */,
 				CE8670E21EB15E5900736BBD /* Campaign.swift in Sources */,
 				CE1561C31EAC26A500EF04A5 /* CharacterCollectionController.swift in Sources */,
+				CE8670EA1EB1647E00736BBD /* PlayerBackstoryView.swift in Sources */,
 				CE1561C11EAC260F00EF04A5 /* CharacterCell.swift in Sources */,
+				CE8670F61EB1776E00736BBD /* SpellCell.swift in Sources */,
 				CE1561C91EAC32E300EF04A5 /* CharacterSheetController.swift in Sources */,
 				CE1561A21EAC07D000EF04A5 /* TitleScreenController.swift in Sources */,
 				CE1561C71EAC290C00EF04A5 /* CharacterSheet.swift in Sources */,
+				CE8670EC1EB1655900736BBD /* PlayerBackstoryController.swift in Sources */,
+				CE8670F01EB16FF100736BBD /* SpellbookCell.swift in Sources */,
 				CE8670D41EB14F2500736BBD /* Combatant.swift in Sources */,
+				CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */,
 				CE8670E81EB15F7D00736BBD /* Sound.swift in Sources */,
 				CE8670D61EB1502800736BBD /* Encounter.swift in Sources */,
 				CE8670DC1EB15A1B00736BBD /* Module.swift in Sources */,

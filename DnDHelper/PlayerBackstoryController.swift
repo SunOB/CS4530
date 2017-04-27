@@ -1,32 +1,29 @@
 //
-//  CharacterSheetController.swift
+//  PlayerBackstoryController.swift
 //  DnDHelper
 //
-//  Created by u0771753 on 4/22/17.
+//  Created by u0771753 on 4/26/17.
 //  Copyright © 2017 u0771753. All rights reserved.
 //
 
 import UIKit
 
-class CharacterSheetController: UIViewController, CharacterSheetDelegate {
-    var contentView : CharacterSheet! {
-        return view as! CharacterSheet!
+class PlayerBackstoryController: UIViewController {
+    var contentView : PlayerBackstoryView! {
+        return view as! PlayerBackstoryView!
     }
-    
-    var backstory : PlayerBackstoryController = PlayerBackstoryController()
     
     override func loadView() {
         super.loadView()
-        view = CharacterSheet()
-        contentView.charDelegate = self
-         navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(clickedBack)), animated: true)
+        view = PlayerBackstoryView()
+        navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(clickedBack)), animated: true)
         self.navigationController?.navigationBar.isTranslucent = false;
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = "Character Sheet"
+        self.title = "Background Information"
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,7 +32,7 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate {
     }
     
     func backstoryPressed(sender: UIButton!) {
-        navigationController?.pushViewController(backstory, animated: true)
+        
     }
     
     func spellbookPressed(sender: UIButton!) {

@@ -15,7 +15,7 @@ protocol CharacterSheetDelegate {
 
 class CharacterSheet : UIView {
     let fontSize : CGFloat = 7.5
-    var delegate : CharacterSheetDelegate!
+    var charDelegate : CharacterSheetDelegate!
     
     //Labels
     private var name : UILabel?
@@ -158,6 +158,31 @@ class CharacterSheet : UIView {
         deathSaves?.font = UIFont(name: "Helvetica", size: fontSize)
         proficiency?.font = UIFont(name: "Helvetica", size: fontSize)
         inspiration?.font = UIFont(name: "Helvetica", size: fontSize)
+        
+        name?.text = "   Name: "
+        game?.text = " Game: "
+        gender?.text = " Gender: "
+        alignment?.text = " Alignment: "
+        race?.text = " Race: "
+        
+        background?.text = "Background: "
+        charClass?.text = " Class: "
+        level?.text = " Level: "
+        exp?.text = "  Exp: "
+        tempHP?.text = " Temporary HP: "
+        hp?.text = " HP: "
+        hpSlash?.text = " /"
+        
+        hitDie?.text = " Hit Die: "
+        hitDieD?.text = " d"
+        hitDieSlash?.text = " / "
+        ac?.text = " AC: "
+        initiative?.text = " Initiative: "
+        speed?.text = " Speed: "
+        deathSaves?.text = " Death Saves: "
+        
+        proficiency?.text = " Proficiency: "
+        inspiration?.text = "  Inspiration: "
 
         nameText?.borderStyle = UITextBorderStyle.bezel
         gameText?.borderStyle = UITextBorderStyle.bezel
@@ -180,6 +205,12 @@ class CharacterSheet : UIView {
         speedText?.borderStyle = UITextBorderStyle.bezel
         proficiencyText?.borderStyle = UITextBorderStyle.bezel
         inspirationText?.borderStyle = UITextBorderStyle.bezel
+        
+        backstory?.setTitle("Backstory", for: .normal)
+        backstory?.backgroundColor = UIColor.red
+        
+        spellbook?.setTitle("Spellbook", for: .normal)
+        spellbook?.backgroundColor = UIColor.blue
         
         addSubview(name!)
         addSubview(game!)
@@ -238,31 +269,6 @@ class CharacterSheet : UIView {
         var r: CGRect = bounds
         let h: CGFloat = r.height
         let w: CGFloat = r.width
-        
-        name?.text = "   Name: "
-        game?.text = " Game: "
-        gender?.text = " Gender: "
-        alignment?.text = " Alignment: "
-        race?.text = " Race: "
-        
-        background?.text = "Background: "
-        charClass?.text = " Class: "
-        level?.text = " Level: "
-        exp?.text = "  Exp: "
-        tempHP?.text = " Temporary HP: "
-        hp?.text = " HP: "
-        hpSlash?.text = " /"
-        
-        hitDie?.text = " Hit Die: "
-        hitDieD?.text = " d"
-        hitDieSlash?.text = " / "
-        ac?.text = " AC: "
-        initiative?.text = " Initiative: "
-        speed?.text = " Speed: "
-        deathSaves?.text = " Death Saves: "
-        
-        proficiency?.text = " Proficiency: "
-        inspiration?.text = "  Inspiration: "
         
         var temp: CGRect
         var temp2: CGRect
@@ -342,45 +348,10 @@ class CharacterSheet : UIView {
         (proficiency!.frame, temp) = temp.divided(atDistance: w * 0.14, from: .minXEdge)
         (proficiencyText!.frame, temp) = temp.divided(atDistance: w * 0.1, from: .minXEdge)
         
-        
-//        
-//        background = UILabel()
-//        charClass = UILabel()
-//        
-//        level = UILabel()
-//        exp = UILabel()
-//        hp = UILabel()
-//        hitDie = UILabel()
-//        ac = UILabel()
-//        
-//        initiative = UILabel()
-//        speed = UILabel()
-//        deathSaves = UILabel()
-//        proficiency = UILabel()
-//        inspiration = UILabel()
-//        
+        (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
+        (temp, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
+        (backstory!.frame, temp) = temp.divided(atDistance: w, from: .minXEdge)
 
-
-//        backgroundText = UITextField()
-//        charClassText = UITextField()
-//        
-//        levelText = UITextField()
-//        expText = UITextField()
-//        tempHPText = UITextField()
-//        curHPText = UITextField()
-//        maxHPText = UITextField()
-//        hitDieSizeText = UITextField()
-//        curHitDieText = UITextField()
-//        totalHitDieText = UITextField()
-//        acText = UITextField()
-//        
-//        initiativeText = UITextField()
-//        speedText = UITextField()
-//        proficiencyText = UITextField()
-//        inspirationText = UITextField()
-
-        
-        
     }
     
     override public func draw(_ rect: CGRect) {
@@ -388,11 +359,11 @@ class CharacterSheet : UIView {
     }
     
     func backstoryButtonPressed(sender: UIButton!) {
-        delegate.backstoryPressed(sender: sender)
+        charDelegate.backstoryPressed(sender: sender)
     }
     
     func spellbookButtonPressed(sender: UIButton!) {
-        delegate.spellbookPressed(sender: sender)
+        charDelegate.spellbookPressed(sender: sender)
     }
     
 }
