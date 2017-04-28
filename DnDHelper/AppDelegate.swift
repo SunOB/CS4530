@@ -12,12 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var contentController : TitleScreenController!
+    var contentController : BestiaryCollectionController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        contentController = TitleScreenController()
+        contentController = BestiaryCollectionController()
         window?.rootViewController = UINavigationController(rootViewController: contentController)
         
         window?.makeKeyAndVisible()

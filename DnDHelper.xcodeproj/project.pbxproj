@@ -19,6 +19,9 @@
 		CE1561C51EAC26E900EF04A5 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1561C41EAC26E900EF04A5 /* CollectionView.swift */; };
 		CE1561C71EAC290C00EF04A5 /* CharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1561C61EAC290C00EF04A5 /* CharacterSheet.swift */; };
 		CE1561C91EAC32E300EF04A5 /* CharacterSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1561C81EAC32E300EF04A5 /* CharacterSheetController.swift */; };
+		CE7000431EB2B3EC008A392C /* CombatantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7000421EB2B3EC008A392C /* CombatantCell.swift */; };
+		CE7000471EB2B424008A392C /* BestiaryCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */; };
+		CE7000491EB2B5E1008A392C /* BestiaryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */; };
 		CE8670D01EB12F6F00736BBD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8670CF1EB12F6F00736BBD /* Default-568h@2x.png */; };
 		CE8670D21EB14D5D00736BBD /* SpellbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670D11EB14D5D00736BBD /* SpellbookView.swift */; };
 		CE8670D41EB14F2500736BBD /* Combatant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670D31EB14F2500736BBD /* Combatant.swift */; };
@@ -52,6 +55,9 @@
 		CE1561C41EAC26E900EF04A5 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		CE1561C61EAC290C00EF04A5 /* CharacterSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSheet.swift; sourceTree = "<group>"; };
 		CE1561C81EAC32E300EF04A5 /* CharacterSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSheetController.swift; sourceTree = "<group>"; };
+		CE7000421EB2B3EC008A392C /* CombatantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombatantCell.swift; sourceTree = "<group>"; };
+		CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestiaryCollectionController.swift; sourceTree = "<group>"; };
+		CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestiaryEntryCell.swift; sourceTree = "<group>"; };
 		CE8670CF1EB12F6F00736BBD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE8670D11EB14D5D00736BBD /* SpellbookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookView.swift; sourceTree = "<group>"; };
 		CE8670D31EB14F2500736BBD /* Combatant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combatant.swift; sourceTree = "<group>"; };
@@ -123,14 +129,10 @@
 		CE1561B81EAC21D400EF04A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE7000411EB2B3C1008A392C /* DM */,
+				CE7000401EB2B3B6008A392C /* Player */,
 				CE1561C41EAC26E900EF04A5 /* CollectionView.swift */,
 				CE1561B91EAC21FC00EF04A5 /* TitleScreen.swift */,
-				CE1561C01EAC260F00EF04A5 /* CharacterCell.swift */,
-				CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */,
-				CE1561C61EAC290C00EF04A5 /* CharacterSheet.swift */,
-				CE8670E91EB1647E00736BBD /* PlayerBackstoryView.swift */,
-				CE8670D11EB14D5D00736BBD /* SpellbookView.swift */,
-				CE8670F51EB1776E00736BBD /* SpellCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -138,14 +140,53 @@
 		CE1561BB1EAC248900EF04A5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE7000451EB2B407008A392C /* DM */,
+				CE7000441EB2B3F6008A392C /* Player */,
 				CE1561A11EAC07D000EF04A5 /* TitleScreenController.swift */,
-				CE1561C21EAC26A500EF04A5 /* CharacterCollectionController.swift */,
-				CE1561C81EAC32E300EF04A5 /* CharacterSheetController.swift */,
-				CE8670EB1EB1655900736BBD /* PlayerBackstoryController.swift */,
-				CE8670ED1EB16EAD00736BBD /* SpellbookController.swift */,
-				CE8670F71EB1845100736BBD /* SpellCollectionController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CE7000401EB2B3B6008A392C /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				CE8670F51EB1776E00736BBD /* SpellCell.swift */,
+				CE8670E91EB1647E00736BBD /* PlayerBackstoryView.swift */,
+				CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */,
+				CE8670D11EB14D5D00736BBD /* SpellbookView.swift */,
+				CE1561C61EAC290C00EF04A5 /* CharacterSheet.swift */,
+				CE1561C01EAC260F00EF04A5 /* CharacterCell.swift */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		CE7000411EB2B3C1008A392C /* DM */ = {
+			isa = PBXGroup;
+			children = (
+				CE7000421EB2B3EC008A392C /* CombatantCell.swift */,
+				CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */,
+			);
+			name = DM;
+			sourceTree = "<group>";
+		};
+		CE7000441EB2B3F6008A392C /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				CE1561C81EAC32E300EF04A5 /* CharacterSheetController.swift */,
+				CE8670F71EB1845100736BBD /* SpellCollectionController.swift */,
+				CE8670ED1EB16EAD00736BBD /* SpellbookController.swift */,
+				CE8670EB1EB1655900736BBD /* PlayerBackstoryController.swift */,
+				CE1561C21EAC26A500EF04A5 /* CharacterCollectionController.swift */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		CE7000451EB2B407008A392C /* DM */ = {
+			isa = PBXGroup;
+			children = (
+				CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */,
+			);
+			name = DM;
 			sourceTree = "<group>";
 		};
 		CE8670D91EB154A200736BBD /* Player */ = {
@@ -244,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7000471EB2B424008A392C /* BestiaryCollectionController.swift in Sources */,
 				CE8670D21EB14D5D00736BBD /* SpellbookView.swift in Sources */,
 				CE1561C51EAC26E900EF04A5 /* CollectionView.swift in Sources */,
 				CE8670EE1EB16EAD00736BBD /* SpellbookController.swift in Sources */,
@@ -251,6 +293,7 @@
 				CE1561B51EAC0E8A00EF04A5 /* Spellbook.swift in Sources */,
 				CE8670E61EB15F0200736BBD /* DungeonMaster.swift in Sources */,
 				CE8670D81EB1542A00736BBD /* BestiaryEntry.swift in Sources */,
+				CE7000491EB2B5E1008A392C /* BestiaryEntryCell.swift in Sources */,
 				CE8670E01EB15C5000736BBD /* Description.swift in Sources */,
 				CE1561BA1EAC21FC00EF04A5 /* TitleScreen.swift in Sources */,
 				CE8670E21EB15E5900736BBD /* Campaign.swift in Sources */,
@@ -267,6 +310,7 @@
 				CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */,
 				CE8670E81EB15F7D00736BBD /* Sound.swift in Sources */,
 				CE8670D61EB1502800736BBD /* Encounter.swift in Sources */,
+				CE7000431EB2B3EC008A392C /* CombatantCell.swift in Sources */,
 				CE8670DC1EB15A1B00736BBD /* Module.swift in Sources */,
 				CE1561A01EAC07D000EF04A5 /* AppDelegate.swift in Sources */,
 				CE1561B71EAC105000EF04A5 /* Backstory.swift in Sources */,

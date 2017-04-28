@@ -8,5 +8,5 @@
 
 import UIKit
 
-class SpellbookView : UI {
+class SpellbookView : UICollectionViewCell {
 }
