@@ -16,16 +16,20 @@ protocol DescriptionCellDelegate {
 class DescriptionCell : UICollectionViewCell {
     var delegate : DescriptionCellDelegate!
     private var titleLabel : UILabel?
-    private var descriptionTextLabel : UILabel?
+    private var descriptionTextView : UITextView?
     
     private var editButton : UIButton?
     private var deleteButton : UIButton?
     var num : Int!
     
+    var height : CGFloat {
+        return titleLabel!.frame.height + descriptionTextView!.frame.height + 20.0
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel = UILabel()
-        descriptionTextLabel = UILabel()
+        descriptionTextView = UITextView()
         
         editButton = UIButton()
         editButton?.addTarget(self, action: #selector(editPressed),for: .touchUpInside)
@@ -44,12 +48,13 @@ class DescriptionCell : UICollectionViewCell {
         titleLabel?.text = "Description: "
         
         titleLabel?.font = UIFont(name: "Helvetica", size: 7.5)
-        descriptionTextLabel?.font = UIFont(name: "Helvetica", size: 7.5)
+        descriptionTextView?.font = UIFont(name: "Helvetica", size: 7.5)
+        descriptionTextView?.isEditable = false
         
         editButton?.backgroundColor = UIColor.darkGray
         deleteButton?.backgroundColor = UIColor.green
         
-        contentView.addSubview(descriptionTextLabel!)
+        contentView.addSubview(descriptionTextView!)
         contentView.addSubview(titleLabel!)
         contentView.addSubview(editButton!)
         contentView.addSubview(deleteButton!)
@@ -93,7 +98,7 @@ class DescriptionCell : UICollectionViewCell {
         (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
         (_, r) = r.divided(atDistance: w * 0.1, from: .minXEdge)
         (_, r) = r.divided(atDistance: w * 0.1, from: .maxXEdge)
-        (descriptionTextLabel!.frame, r) = r.divided(atDistance: h * 0.55, from: .minYEdge)
+        (descriptionTextView!.frame, r) = r.divided(atDistance: h * 0.55, from: .minYEdge)
     }
     
     func editPressed(sender: UIButton) {
@@ -102,6 +107,12 @@ class DescriptionCell : UICollectionViewCell {
     
     func deletePressed(sender: UIButton) {
         delegate.descDeleteCell(_num: num)
+    }
+    
+    func update(title: String, desc : String) {
+        titleLabel?.text = title
+        descriptionTextView?.text = desc
+        setNeedsDisplay()
     }
 }
 

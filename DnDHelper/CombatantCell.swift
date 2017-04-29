@@ -196,6 +196,7 @@ class CombatantCell : UICollectionViewCell {
     
     
     func deletePressed(sender: UIButton) {
+        endEditing(false)
         delegate.deletePressed(_num: num)
     }
 }

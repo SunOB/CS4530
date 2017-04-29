@@ -13,7 +13,7 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     var collectionViewFlowLayout : UICollectionViewFlowLayout { return collectionView.collectionViewLayout as! UICollectionViewFlowLayout }
     var encounter : Encounter = Encounter()
     var bestiary : Bestiary = Bestiary()
-    
+        
     let invalidAlertController = UIAlertController(title: "Invalid Input", message: "You did not enter a valid number", preferredStyle: .alert)
     
     var bestiaryView: BestiaryCollectionController = BestiaryCollectionController()
@@ -44,12 +44,11 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        navigationController?.title = encounter.name
-        let temp = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-        temp.baselineAdjustment = .alignCenters
-        temp.text = encounter.name
+        let temp = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        temp.textAlignment = .center
         temp.font = UIFont(name: "Helvetica-Bold", size: 30.0)
         temp.adjustsFontSizeToFitWidth = true
+        temp.borderStyle = UITextBorderStyle.line
         self.navigationItem.titleView = temp
         
         collectionView.dataSource = self
@@ -59,6 +58,7 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        (self.navigationItem.titleView as! UITextField).text = encounter.name
         collectionView.reloadData()
     }
     
@@ -74,10 +74,12 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     }
     
     func addCombatant(sender: UIBarButtonItem) {
+        encounter.name = (self.navigationItem.titleView as! UITextField).text!
         _ = navigationController?.pushViewController(bestiaryView, animated: true)
     }
     
     func backPressed() {
+        encounter.name = (self.navigationItem.titleView as! UITextField).text!
         _ = navigationController?.popViewController(animated: true)
     }
     
@@ -98,11 +100,32 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     }
     
     func valueChanged(name: String, initiative: Int, ac: Int, hp: Int, pg: Int, _num: Int) {
-        encounter.combatants[_num].name = name
-        encounter.combatants[_num].initiative = initiative
-        encounter.combatants[_num].ac = ac
-        encounter.combatants[_num].hp = hp
-        encounter.combatants[_num].pg = pg
+        var totalChanges = 0
+        
+        if (encounter.combatants[_num].name != name) {
+            totalChanges = totalChanges + 1
+        }
+        if (encounter.combatants[_num].ac != ac) {
+            totalChanges = totalChanges + 1
+        }
+        if (encounter.combatants[_num].hp != hp) {
+            totalChanges = totalChanges + 1
+        }
+        if (encounter.combatants[_num].pg != pg) {
+            totalChanges = totalChanges + 1
+        }
+        if (encounter.combatants[_num].initiative != initiative) {
+            totalChanges = totalChanges + 1
+        }
+        
+        if (totalChanges <= 1) {
+            encounter.combatants[_num].name = name
+            encounter.combatants[_num].initiative = initiative
+            encounter.combatants[_num].ac = ac
+            encounter.combatants[_num].hp = hp
+            encounter.combatants[_num].pg = pg
+        }
+        
         collectionView.reloadData()
     }
     
@@ -146,6 +169,9 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
         case UIGestureRecognizerState.began:
             guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
                 break
+            }
+            for cell in collectionView.visibleCells {
+                (cell as! CombatantCell).endEditing(false)
             }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case UIGestureRecognizerState.changed:

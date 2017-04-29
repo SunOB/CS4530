@@ -53,6 +53,9 @@ class EncounterCell : UICollectionViewCell {
         
         combatantsBodyLabel?.backgroundColor = UIColor.lightText
         
+        combatantsBodyLabel?.adjustsFontSizeToFitWidth = true
+        combatantsBodyLabel?.numberOfLines = 0
+        
         editButton?.backgroundColor = UIColor.darkGray
         deleteButton?.backgroundColor = UIColor.green
         
@@ -67,6 +70,11 @@ class EncounterCell : UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func update(name : String, combatantsList : String) {
+        combatantsBodyLabel?.text = combatantsList
+        nameLabel?.text = name
     }
     
     override func layoutSubviews() {

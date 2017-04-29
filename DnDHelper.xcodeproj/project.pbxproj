@@ -38,6 +38,10 @@
 		CE8670F01EB16FF100736BBD /* SpellbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */; };
 		CE8670F61EB1776E00736BBD /* SpellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670F51EB1776E00736BBD /* SpellCell.swift */; };
 		CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670F71EB1845100736BBD /* SpellCollectionController.swift */; };
+		CE91B5B91EB52BE6009B9B2C /* DescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91B5B81EB52BE6009B9B2C /* DescriptionController.swift */; };
+		CE91B5BB1EB52F25009B9B2C /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91B5BA1EB52F25009B9B2C /* DescriptionView.swift */; };
+		CE91B5BD1EB540EE009B9B2C /* ModuleCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91B5BC1EB540EE009B9B2C /* ModuleCollectionController.swift */; };
+		CE91B5BF1EB54192009B9B2C /* ModuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91B5BE1EB54192009B9B2C /* ModuleCell.swift */; };
 		CEA98E161EB3E7B300DC16F7 /* EncounterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */; };
 		CEA98E181EB400DE00DC16F7 /* Bestiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E171EB400DE00DC16F7 /* Bestiary.swift */; };
 		CEA98E1A1EB416D400DC16F7 /* ModuleContentCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */; };
@@ -79,6 +83,10 @@
 		CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookCell.swift; sourceTree = "<group>"; };
 		CE8670F51EB1776E00736BBD /* SpellCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellCell.swift; sourceTree = "<group>"; };
 		CE8670F71EB1845100736BBD /* SpellCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellCollectionController.swift; sourceTree = "<group>"; };
+		CE91B5B81EB52BE6009B9B2C /* DescriptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionController.swift; sourceTree = "<group>"; };
+		CE91B5BA1EB52F25009B9B2C /* DescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		CE91B5BC1EB540EE009B9B2C /* ModuleCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleCollectionController.swift; sourceTree = "<group>"; };
+		CE91B5BE1EB54192009B9B2C /* ModuleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleCell.swift; sourceTree = "<group>"; };
 		CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncounterCollectionController.swift; sourceTree = "<group>"; };
 		CEA98E171EB400DE00DC16F7 /* Bestiary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bestiary.swift; sourceTree = "<group>"; };
 		CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleContentCollectionController.swift; sourceTree = "<group>"; };
@@ -177,6 +185,8 @@
 				CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */,
 				CEA98E1F1EB42C4300DC16F7 /* DescriptionCell.swift */,
 				CEA98E211EB42C5500DC16F7 /* EncounterCell.swift */,
+				CE91B5BA1EB52F25009B9B2C /* DescriptionView.swift */,
+				CE91B5BE1EB54192009B9B2C /* ModuleCell.swift */,
 			);
 			name = DM;
 			sourceTree = "<group>";
@@ -196,9 +206,11 @@
 		CE7000451EB2B407008A392C /* DM */ = {
 			isa = PBXGroup;
 			children = (
+				CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */,
+				CE91B5B81EB52BE6009B9B2C /* DescriptionController.swift */,
 				CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */,
 				CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */,
-				CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */,
+				CE91B5BC1EB540EE009B9B2C /* ModuleCollectionController.swift */,
 			);
 			name = DM;
 			sourceTree = "<group>";
@@ -303,13 +315,16 @@
 				CE7000471EB2B424008A392C /* BestiaryCollectionController.swift in Sources */,
 				CEA98E181EB400DE00DC16F7 /* Bestiary.swift in Sources */,
 				CEA98E201EB42C4300DC16F7 /* DescriptionCell.swift in Sources */,
+				CE91B5BB1EB52F25009B9B2C /* DescriptionView.swift in Sources */,
 				CE8670D21EB14D5D00736BBD /* SpellbookView.swift in Sources */,
+				CE91B5B91EB52BE6009B9B2C /* DescriptionController.swift in Sources */,
 				CE1561C51EAC26E900EF04A5 /* CollectionView.swift in Sources */,
 				CE8670EE1EB16EAD00736BBD /* SpellbookController.swift in Sources */,
 				CE1561B31EAC083700EF04A5 /* Character.swift in Sources */,
 				CE1561B51EAC0E8A00EF04A5 /* Spellbook.swift in Sources */,
 				CE8670E61EB15F0200736BBD /* DungeonMaster.swift in Sources */,
 				CE8670D81EB1542A00736BBD /* BestiaryEntry.swift in Sources */,
+				CE91B5BD1EB540EE009B9B2C /* ModuleCollectionController.swift in Sources */,
 				CE7000491EB2B5E1008A392C /* BestiaryEntryCell.swift in Sources */,
 				CE8670E01EB15C5000736BBD /* Description.swift in Sources */,
 				CE1561BA1EAC21FC00EF04A5 /* TitleScreen.swift in Sources */,
@@ -326,6 +341,7 @@
 				CE8670F01EB16FF100736BBD /* SpellbookCell.swift in Sources */,
 				CEA98E161EB3E7B300DC16F7 /* EncounterCollectionController.swift in Sources */,
 				CE8670D41EB14F2500736BBD /* Combatant.swift in Sources */,
+				CE91B5BF1EB54192009B9B2C /* ModuleCell.swift in Sources */,
 				CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */,
 				CE8670E81EB15F7D00736BBD /* Sound.swift in Sources */,
 				CE8670D61EB1502800736BBD /* Encounter.swift in Sources */,

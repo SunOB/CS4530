@@ -20,8 +20,8 @@ class Encounter: NSObject, NSCoding, ModuleContent {
         var combatantCounts : [String: Int] = [:]
         
         for c in combatants {
-            if var count = combatantCounts[c.name] {
-                count = count + 1
+            if let count = combatantCounts[c.name] {
+                combatantCounts[c.name] = count + 1
             }
             else {
                 combatantCounts[c.name] = 1
