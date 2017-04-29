@@ -8,15 +8,21 @@
 
 import UIKit
 
+protocol ModuleContentDelegate {
+    func returnedFromEdit()
+}
+
 class ModuleContentCollectionController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DescriptionCellDelegate, EncounterCellDelegate, UIGestureRecognizerDelegate  {
     var collectionView : CollectionView {return view as! CollectionView}
     var collectionViewFlowLayout : UICollectionViewFlowLayout { return collectionView.collectionViewLayout as! UICollectionViewFlowLayout }
     var module : Module = Module()
     
+    var delegate : ModuleContentDelegate!
+    
     let addAlertController = UIAlertController(title: "Choose a panel type", message: "", preferredStyle: .alert)
     
-    var encounterView: EncounterCollectionController = EncounterCollectionController()
-    var descriptionView : DescriptionController = DescriptionController()
+    let encounterView: EncounterCollectionController = EncounterCollectionController()
+    let descriptionView : DescriptionController = DescriptionController()
     
     var longPressGesture : UILongPressGestureRecognizer!
     
@@ -82,6 +88,7 @@ class ModuleContentCollectionController : UIViewController, UICollectionViewData
     
     func backPressed() {
         module.name = (self.navigationItem.titleView as! UITextField).text!
+        delegate.returnedFromEdit()
         _ = navigationController?.popViewController(animated: true)
     }
     

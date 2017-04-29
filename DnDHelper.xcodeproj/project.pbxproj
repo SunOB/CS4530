@@ -206,11 +206,11 @@
 		CE7000451EB2B407008A392C /* DM */ = {
 			isa = PBXGroup;
 			children = (
+				CE91B5BC1EB540EE009B9B2C /* ModuleCollectionController.swift */,
 				CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */,
 				CE91B5B81EB52BE6009B9B2C /* DescriptionController.swift */,
 				CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */,
 				CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */,
-				CE91B5BC1EB540EE009B9B2C /* ModuleCollectionController.swift */,
 			);
 			name = DM;
 			sourceTree = "<group>";

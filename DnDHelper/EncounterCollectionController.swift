@@ -16,7 +16,7 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
         
     let invalidAlertController = UIAlertController(title: "Invalid Input", message: "You did not enter a valid number", preferredStyle: .alert)
     
-    var bestiaryView: BestiaryCollectionController = BestiaryCollectionController()
+    let bestiaryView: BestiaryCollectionController = BestiaryCollectionController()
     
     var longPressGesture : UILongPressGestureRecognizer!
     

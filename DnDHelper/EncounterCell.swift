@@ -17,7 +17,7 @@ class EncounterCell : UICollectionViewCell {
     var delegate : EncounterCellDelegate!
     private var combatantsLabel : UILabel?
     private var nameLabel : UILabel?
-    private var combatantsBodyLabel : UILabel?
+    private var combatantsBodyText : UITextView?
     
     private var editButton : UIButton?
     private var deleteButton : UIButton?
@@ -29,7 +29,7 @@ class EncounterCell : UICollectionViewCell {
         combatantsLabel = UILabel()
         nameLabel = UILabel()
         
-        combatantsBodyLabel = UILabel()
+        combatantsBodyText = UITextView()
         
         editButton = UIButton()
         editButton?.addTarget(self, action: #selector(editPressed),for: .touchUpInside)
@@ -51,17 +51,16 @@ class EncounterCell : UICollectionViewCell {
         combatantsLabel?.font = UIFont(name: "Helvetica", size: 7.5)
         nameLabel?.font = UIFont(name: "Helvetica", size: 7.5)
         
-        combatantsBodyLabel?.backgroundColor = UIColor.lightText
-        
-        combatantsBodyLabel?.adjustsFontSizeToFitWidth = true
-        combatantsBodyLabel?.numberOfLines = 0
+        combatantsBodyText?.backgroundColor = UIColor.lightText
+        combatantsBodyText?.font = UIFont(name: "Helvetica", size: 7.5)
+        combatantsBodyText?.isEditable = false
         
         editButton?.backgroundColor = UIColor.darkGray
         deleteButton?.backgroundColor = UIColor.green
         
         contentView.addSubview(combatantsLabel!)
         contentView.addSubview(nameLabel!)
-        contentView.addSubview(combatantsBodyLabel!)
+        contentView.addSubview(combatantsBodyText!)
         contentView.addSubview(editButton!)
         contentView.addSubview(deleteButton!)
         
@@ -73,7 +72,7 @@ class EncounterCell : UICollectionViewCell {
     }
     
     func update(name : String, combatantsList : String) {
-        combatantsBodyLabel?.text = combatantsList
+        combatantsBodyText?.text = combatantsList
         nameLabel?.text = name
     }
     
@@ -111,7 +110,7 @@ class EncounterCell : UICollectionViewCell {
         (_, r) = r.divided(atDistance: w * 0.1, from: .maxXEdge)
         (combatantsLabel!.frame, r) = r.divided(atDistance: h * 0.1, from: .minYEdge)
         (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
-        (combatantsBodyLabel!.frame, r) = r.divided(atDistance: h * 0.55, from: .minYEdge)
+        (combatantsBodyText!.frame, r) = r.divided(atDistance: h * 0.55, from: .minYEdge)
     }
     
     func editPressed(sender: UIButton) {

@@ -22,10 +22,6 @@ class DescriptionCell : UICollectionViewCell {
     private var deleteButton : UIButton?
     var num : Int!
     
-    var height : CGFloat {
-        return titleLabel!.frame.height + descriptionTextView!.frame.height + 20.0
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel = UILabel()
