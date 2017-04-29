@@ -14,6 +14,7 @@ import UIKit
 protocol BestiaryEntryDelegate {
     func valueChanged(name: String, ac: Int, hp: Int, pg: Int, _num: Int)
     func invalidInput()
+    func entrySelected(_num: Int)
 }
 
 class BestiaryEntryCell : UICollectionViewCell {
@@ -26,6 +27,8 @@ class BestiaryEntryCell : UICollectionViewCell {
     private var acText : UITextField?
     private var hpText : UITextField?
     private var pgText : UITextField?
+    
+    private var selectButton : UIButton?
     
     var num : Int!
     
@@ -40,6 +43,13 @@ class BestiaryEntryCell : UICollectionViewCell {
         acText = UITextField()
         hpText = UITextField()
         pgText = UITextField()
+        
+        selectButton = UIButton()
+        selectButton?.addTarget(self, action: #selector(selectPressed),for: .touchUpInside)
+        
+        selectButton?.titleLabel?.font = UIFont(name: "Helvetica", size: 7.5)
+        selectButton?.setTitle("Select", for: .normal)
+        selectButton?.contentHorizontalAlignment = .center
         
         acLabel?.text = "AC: "
         hpLabel?.text = "HP: "
@@ -63,10 +73,12 @@ class BestiaryEntryCell : UICollectionViewCell {
         hpText?.font = UIFont(name: "Helvetica", size: 7.5)
         pgText?.font = UIFont(name: "Helvetica", size: 7.5)
         
-        nameText?.backgroundColor = UIColor.white
-        acText?.backgroundColor = UIColor.white
-        hpText?.backgroundColor = UIColor.white
-        pgText?.backgroundColor = UIColor.white
+        nameText?.backgroundColor = UIColor.lightText
+        acText?.backgroundColor = UIColor.lightText
+        hpText?.backgroundColor = UIColor.lightText
+        pgText?.backgroundColor = UIColor.lightText
+        
+        selectButton?.backgroundColor = UIColor.darkGray
 
         contentView.addSubview(acLabel!)
         contentView.addSubview(hpLabel!)
@@ -75,6 +87,7 @@ class BestiaryEntryCell : UICollectionViewCell {
         contentView.addSubview(acText!)
         contentView.addSubview(hpText!)
         contentView.addSubview(pgText!)
+        contentView.addSubview(selectButton!)
         
         backgroundColor = UIColor.blue
     }
@@ -130,10 +143,22 @@ class BestiaryEntryCell : UICollectionViewCell {
         let h: CGFloat = r.height
         let w: CGFloat = r.width
         
-        (nameText!.frame, r) = r.divided(atDistance: h * 0.45, from: .minYEdge)
+        (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
+        (nameText!.frame, r) = r.divided(atDistance: h * 0.44, from: .minYEdge)
         (_, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.05, from: .minXEdge)
+        
+        //MaxXEdge
+        (_, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.025, from: .maxXEdge)
+        (selectButton!.frame, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.2, from: .maxXEdge)
         (_, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.05, from: .maxXEdge)
 
+        (_, selectButton!.frame) = selectButton!.frame.divided(atDistance: w * 0.025, from: .maxXEdge)
+        (_, selectButton!.frame) = selectButton!.frame.divided(atDistance: w * 0.025, from: .minXEdge)
+        (_, selectButton!.frame) = selectButton!.frame.divided(atDistance: h * 0.025, from: .minYEdge)
+        (_, selectButton!.frame) = selectButton!.frame.divided(atDistance: h * 0.025, from: .maxYEdge)
+
+
+        (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
         (_, r) = r.divided(atDistance: w * 0.1, from: .minXEdge)
         (acLabel!.frame, r) = r.divided(atDistance: w * 0.05, from: .minXEdge)
         (acText!.frame, r) = r.divided(atDistance: w * 0.125, from: .minXEdge)
@@ -146,4 +171,9 @@ class BestiaryEntryCell : UICollectionViewCell {
         (_, r) = r.divided(atDistance: w * 0.1, from: .minXEdge)
     }
     
+    
+    func selectPressed(sender: UIButton) {
+        endEditing(false)
+        delegate.entrySelected(_num: num)
+    }
 }

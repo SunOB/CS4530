@@ -38,6 +38,11 @@
 		CE8670F01EB16FF100736BBD /* SpellbookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */; };
 		CE8670F61EB1776E00736BBD /* SpellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670F51EB1776E00736BBD /* SpellCell.swift */; };
 		CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670F71EB1845100736BBD /* SpellCollectionController.swift */; };
+		CEA98E161EB3E7B300DC16F7 /* EncounterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */; };
+		CEA98E181EB400DE00DC16F7 /* Bestiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E171EB400DE00DC16F7 /* Bestiary.swift */; };
+		CEA98E1A1EB416D400DC16F7 /* ModuleContentCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */; };
+		CEA98E201EB42C4300DC16F7 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E1F1EB42C4300DC16F7 /* DescriptionCell.swift */; };
+		CEA98E221EB42C5500DC16F7 /* EncounterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA98E211EB42C5500DC16F7 /* EncounterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +79,11 @@
 		CE8670EF1EB16FF100736BBD /* SpellbookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookCell.swift; sourceTree = "<group>"; };
 		CE8670F51EB1776E00736BBD /* SpellCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellCell.swift; sourceTree = "<group>"; };
 		CE8670F71EB1845100736BBD /* SpellCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellCollectionController.swift; sourceTree = "<group>"; };
+		CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncounterCollectionController.swift; sourceTree = "<group>"; };
+		CEA98E171EB400DE00DC16F7 /* Bestiary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bestiary.swift; sourceTree = "<group>"; };
+		CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleContentCollectionController.swift; sourceTree = "<group>"; };
+		CEA98E1F1EB42C4300DC16F7 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		CEA98E211EB42C5500DC16F7 /* EncounterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncounterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +139,10 @@
 		CE1561B81EAC21D400EF04A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE1561B91EAC21FC00EF04A5 /* TitleScreen.swift */,
 				CE7000411EB2B3C1008A392C /* DM */,
 				CE7000401EB2B3B6008A392C /* Player */,
 				CE1561C41EAC26E900EF04A5 /* CollectionView.swift */,
-				CE1561B91EAC21FC00EF04A5 /* TitleScreen.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -165,6 +175,8 @@
 			children = (
 				CE7000421EB2B3EC008A392C /* CombatantCell.swift */,
 				CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */,
+				CEA98E1F1EB42C4300DC16F7 /* DescriptionCell.swift */,
+				CEA98E211EB42C5500DC16F7 /* EncounterCell.swift */,
 			);
 			name = DM;
 			sourceTree = "<group>";
@@ -184,7 +196,9 @@
 		CE7000451EB2B407008A392C /* DM */ = {
 			isa = PBXGroup;
 			children = (
+				CEA98E151EB3E7B300DC16F7 /* EncounterCollectionController.swift */,
 				CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */,
+				CEA98E191EB416D400DC16F7 /* ModuleContentCollectionController.swift */,
 			);
 			name = DM;
 			sourceTree = "<group>";
@@ -210,6 +224,7 @@
 				CE8670E11EB15E5900736BBD /* Campaign.swift */,
 				CE8670E51EB15F0200736BBD /* DungeonMaster.swift */,
 				CE8670E71EB15F7D00736BBD /* Sound.swift */,
+				CEA98E171EB400DE00DC16F7 /* Bestiary.swift */,
 			);
 			name = DM;
 			sourceTree = "<group>";
@@ -286,6 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7000471EB2B424008A392C /* BestiaryCollectionController.swift in Sources */,
+				CEA98E181EB400DE00DC16F7 /* Bestiary.swift in Sources */,
+				CEA98E201EB42C4300DC16F7 /* DescriptionCell.swift in Sources */,
 				CE8670D21EB14D5D00736BBD /* SpellbookView.swift in Sources */,
 				CE1561C51EAC26E900EF04A5 /* CollectionView.swift in Sources */,
 				CE8670EE1EB16EAD00736BBD /* SpellbookController.swift in Sources */,
@@ -303,15 +320,18 @@
 				CE8670F61EB1776E00736BBD /* SpellCell.swift in Sources */,
 				CE1561C91EAC32E300EF04A5 /* CharacterSheetController.swift in Sources */,
 				CE1561A21EAC07D000EF04A5 /* TitleScreenController.swift in Sources */,
+				CEA98E1A1EB416D400DC16F7 /* ModuleContentCollectionController.swift in Sources */,
 				CE1561C71EAC290C00EF04A5 /* CharacterSheet.swift in Sources */,
 				CE8670EC1EB1655900736BBD /* PlayerBackstoryController.swift in Sources */,
 				CE8670F01EB16FF100736BBD /* SpellbookCell.swift in Sources */,
+				CEA98E161EB3E7B300DC16F7 /* EncounterCollectionController.swift in Sources */,
 				CE8670D41EB14F2500736BBD /* Combatant.swift in Sources */,
 				CE8670F81EB1845100736BBD /* SpellCollectionController.swift in Sources */,
 				CE8670E81EB15F7D00736BBD /* Sound.swift in Sources */,
 				CE8670D61EB1502800736BBD /* Encounter.swift in Sources */,
 				CE7000431EB2B3EC008A392C /* CombatantCell.swift in Sources */,
 				CE8670DC1EB15A1B00736BBD /* Module.swift in Sources */,
+				CEA98E221EB42C5500DC16F7 /* EncounterCell.swift in Sources */,
 				CE1561A01EAC07D000EF04A5 /* AppDelegate.swift in Sources */,
 				CE1561B71EAC105000EF04A5 /* Backstory.swift in Sources */,
 			);

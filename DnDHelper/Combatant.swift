@@ -13,13 +13,22 @@ class Combatant: NSObject, NSCoding {
     var ac : Int
     var hp : Int
     var pg : Int
-    var initiative : Int
+    public var initiative : Int
     
     override init() {
         name = ""
         ac = 0
         hp = 0
         pg = 0
+        initiative = 0
+        super.init()
+    }
+    
+    init(_name : String, _ac : Int, _hp: Int, _pg : Int) {
+        name = _name
+        ac = _ac
+        hp = _hp
+        pg = _pg
         initiative = 0
         super.init()
     }

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DnDHelper/BestiaryEntryCell.swift"
-            timestampString = "515033861.193803"
+            timestampString = "515105968.927839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "textChanged(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DnDHelper/BestiaryCollectionController.swift"
-            timestampString = "515031350.414975"
+            timestampString = "515112854.843014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "BestiaryCollectionController"
             landmarkType = "3">
          </BreakpointContent>
@@ -70,90 +70,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DnDHelper/CombatantCell.swift"
-            timestampString = "515032180.664909"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "CombatantCell"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DnDHelper.CombatantCell.deinit"
-                  moduleName = "DnDHelper"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Authenticated%20User/Desktop/temp/CS4530/DnDHelper/CombatantCell.swift"
-                  timestampString = "515033263.950269"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DnDHelper.CombatantCell.init () -&gt; DnDHelper.CombatantCell"
-                  moduleName = "DnDHelper"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Authenticated%20User/Desktop/temp/CS4530/DnDHelper/CombatantCell.swift"
-                  timestampString = "515033263.95269"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DnDHelper.CombatantCell.__allocating_init () -&gt; DnDHelper.CombatantCell"
-                  moduleName = "DnDHelper"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Authenticated%20User/Desktop/temp/CS4530/DnDHelper/CombatantCell.swift"
-                  timestampString = "515033263.955183"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DnDHelper/BestiaryEntryCell.swift"
-            timestampString = "515033861.193803"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "textChanged(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DnDHelper/BestiaryEntryCell.swift"
-            timestampString = "515033861.193803"
+            timestampString = "515105968.927839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -162,33 +83,81 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "DnDHelper.BestiaryEntryCell.textChanged (sender : Swift.Optional&lt;__ObjC.UITextField&gt;) -&gt; ()"
                   moduleName = "DnDHelper"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Authenticated%20User/Desktop/temp/CS4530/DnDHelper/BestiaryEntryCell.swift"
-                  timestampString = "515033263.981734"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/BestiaryEntryCell.swift"
+                  timestampString = "515104701.163014"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.BestiaryEntryCell.textChanged (sender : Swift.Optional&lt;__ObjC.UITextField&gt;) -&gt; ()"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/BestiaryEntryCell.swift"
+                  timestampString = "515104701.165027"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "4887">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryEntryCell.swift"
+            timestampString = "515105968.927839"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "textChanged(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.BestiaryEntryCell.textChanged (sender : Swift.Optional&lt;__ObjC.UITextField&gt;) -&gt; ()"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/BestiaryEntryCell.swift"
+                  timestampString = "515104701.170047"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
                   offsetFromSymbolStart = "1497">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "DnDHelper.BestiaryEntryCell.textChanged (sender : Swift.Optional&lt;__ObjC.UITextField&gt;) -&gt; ()"
                   moduleName = "DnDHelper"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Authenticated%20User/Desktop/temp/CS4530/DnDHelper/BestiaryEntryCell.swift"
-                  timestampString = "515033263.988502"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/BestiaryEntryCell.swift"
+                  timestampString = "515104701.172063"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
                   offsetFromSymbolStart = "4911">
                </Location>
             </Locations>
@@ -197,16 +166,491 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DnDHelper/BestiaryEntryCell.swift"
-            timestampString = "515033861.193803"
+            timestampString = "515105968.927839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "textChanged(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryEntryCell.swift"
+            timestampString = "515105122.76301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/Encounter.swift"
+            timestampString = "515109402.02295"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "sortByInitiative()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515122811.907717"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "EncounterCollectionController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterCollectionController.bestiary.setter : Swift.Array&lt;DnDHelper.BestiaryEntry&gt;"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterCollectionController.swift"
+                  timestampString = "515112855.907816"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterCollectionController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; DnDHelper.EncounterCollectionController"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterCollectionController.swift"
+                  timestampString = "515112855.909918"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "131">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterCollectionController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;DnDHelper.EncounterCollectionController&gt;"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterCollectionController.swift"
+                  timestampString = "515112855.912669"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515124644.652384"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "loadView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515114278.78492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "loadView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515124752.571945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "sortByInitiative(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515124752.571945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "sortByInitiative(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515124752.571945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "didReceiveMemoryWarning()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515124752.571945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "addCombatant(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterControllerHelper.swift"
+            timestampString = "515121578.180032"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "EncounterHelperDelegate"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterControllerHelper.init (collectionViewLayout : __ObjC.UICollectionViewLayout) -&gt; DnDHelper.EncounterControllerHelper"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterControllerHelper.swift"
+                  timestampString = "515121579.257243"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterControllerHelper.__allocating_init (collectionViewLayout : __ObjC.UICollectionViewLayout) -&gt; DnDHelper.EncounterControllerHelper"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterControllerHelper.swift"
+                  timestampString = "515121579.259423"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterControllerHelper.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; DnDHelper.EncounterControllerHelper"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterControllerHelper.swift"
+                  timestampString = "515121579.261659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterControllerHelper.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; DnDHelper.EncounterControllerHelper"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterControllerHelper.swift"
+                  timestampString = "515121579.263934"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterControllerHelper.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;DnDHelper.EncounterControllerHelper&gt;"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterControllerHelper.swift"
+                  timestampString = "515121579.265997"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DnDHelper.EncounterControllerHelper.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;DnDHelper.EncounterControllerHelper&gt;"
+                  moduleName = "DnDHelper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Authenticated%20User/Desktop/Temp/CS4530/DnDHelper/EncounterControllerHelper.swift"
+                  timestampString = "515121579.267984"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515125287.857851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515125287.857851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/EncounterCollectionController.swift"
+            timestampString = "515124752.571945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "deletePressed(_num:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "valueChanged(name:ac:hp:pg:_num:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "valueChanged(name:ac:hp:pg:_num:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128182.180617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "collectionView(_:moveItemAt:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DnDHelper/BestiaryCollectionController.swift"
+            timestampString = "515128750.037391"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

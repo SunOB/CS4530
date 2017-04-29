@@ -10,12 +10,12 @@ import Foundation
 
 class DungeonMaster: NSObject, NSCoding {
     var campaigns : [Campaign]
-    var bestiary : [BestiaryEntry]
+    var bestiary : Bestiary
     var soundboard : [Sound]
     
     override init() {
         campaigns = []
-        bestiary = []
+        bestiary = Bestiary()
         soundboard = []
         super.init()
     }
@@ -30,7 +30,7 @@ class DungeonMaster: NSObject, NSCoding {
     //Decode data
     required init?(coder aDecoder: NSCoder) {
         campaigns = aDecoder.decodeObject(forKey: "Campaigns") as! [Campaign]
-        bestiary = aDecoder.decodeObject(forKey: "Bestiary") as! [BestiaryEntry]
+        bestiary = aDecoder.decodeObject(forKey: "Bestiary") as! Bestiary
         soundboard = aDecoder.decodeObject(forKey: "Soundboard") as! [Sound]
     }
 }

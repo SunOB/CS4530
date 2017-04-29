@@ -55,4 +55,17 @@ class Encounter: NSObject, NSCoding, ModuleContent {
         name = aDecoder.decodeObject(forKey: "Name") as! String
         combatants = aDecoder.decodeObject(forKey: "Combatants") as! [Combatant]
     }
+    
+    func sortByInitiative() {
+        combatants.sort(by: {$0.initiative > $1.initiative})
+    }
+    
+    func addCombatants(character: BestiaryEntry, count: Int) {
+        if (count > 0) {
+            for _ in 1...count {
+                let c = Combatant(_name: character.name, _ac: character.ac, _hp: character.hp, _pg: character.pg)
+                combatants.append(c);
+            }
+        }
+    }
 }

@@ -8,22 +8,54 @@
 
 import UIKit
 
-class BestiaryCollectionController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BestiaryEntryDelegate {
+protocol BestiaryCollectionDelegate {
+    func addSelectedCombatant(num: Int, count: Int)
+}
+
+class BestiaryCollectionController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BestiaryEntryDelegate, UIGestureRecognizerDelegate {
     var collectionView : CollectionView {return view as! CollectionView}
     var collectionViewFlowLayout : UICollectionViewFlowLayout { return collectionView.collectionViewLayout as! UICollectionViewFlowLayout }
-    var bestiary : [BestiaryEntry] = []
+    var bestiary : Bestiary = Bestiary()
     
-    let alertController = UIAlertController(title: "Invalid Input", message: "You did not enter a valid number", preferredStyle: .alert)
+    var delegate : BestiaryCollectionDelegate!
+    
+    let invalidAlertController = UIAlertController(title: "Invalid Input", message: "You did not enter a valid number", preferredStyle: .alert)
+    let selectAlertController = UIAlertController(title: "How Many?", message: "", preferredStyle: .alert)
+    var longPressGesture : UILongPressGestureRecognizer!
+    
+    var lastSelected : Int!
     
     override func loadView() {
         super.loadView()
-        self.navigationController?.navigationBar.isTranslucent = false
+        invalidAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        selectAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        selectAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:
+        {
+            (alert: UIAlertAction!) -> Void in
+            var _count = Int((self.selectAlertController.textFields?[0].text)!)
+            if (_count == nil || (self.selectAlertController.textFields?[0].text)! == "") {
+                _count = 0
+            }
+            self.delegate.addSelectedCombatant(num: self.lastSelected, count: _count!)
+            _ = self.navigationController?.popViewController(animated: true)
+        }))
+    
+            
+        selectAlertController.addTextField { (textField: UITextField!) in
+            textField.keyboardType = UIKeyboardType.numberPad
+        }
+        
         view = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        alertController.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.setRightBarButton(UIBarButtonItem(title: "New Entry", style: .plain, target: self, action: #selector(newEntry)), animated: true)
         navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backPressed)), animated: true)
+        
         view.backgroundColor = UIColor.white
         collectionView.delegate = self
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
+        longPressGesture.delegate = self
+        self.collectionView.addGestureRecognizer(longPressGesture)
     }
     
     override func viewDidLoad() {
@@ -40,7 +72,7 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
     }
     
     func newEntry(sender: UIBarButtonItem) {
-        bestiary.append(BestiaryEntry())
+        bestiary.collection.append(BestiaryEntry())
         collectionView.reloadData()
     }
     
@@ -49,14 +81,14 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bestiary.count
+        return bestiary.collection.count
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BestiaryEntryCell.self), for: indexPath) as! BestiaryEntryCell
-        if (indexPath[1] < bestiary.count) {
-            let temp = bestiary[indexPath[1]]
+        if (indexPath[1] < bestiary.collection.count) {
+            let temp = bestiary.collection[indexPath[1]]
             cell.updateCell(name: temp.name, ac: temp.ac, hp: temp.hp, pg: temp.pg)
         }
         cell.num = indexPath[1]
@@ -65,15 +97,83 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
     }
     
     func valueChanged(name: String, ac: Int, hp: Int, pg: Int, _num: Int) {
-        bestiary[_num].name = name
-        bestiary[_num].ac = ac
-        bestiary[_num].hp = hp
-        bestiary[_num].pg = pg
+        //Hacky way to fix swapping bug, actual issue probably caused by the function above which tries to update the cell data when dragging the cell.
+        
+        var totalChanges = 0
+        
+        if (bestiary.collection[_num].name != name) {
+            totalChanges = totalChanges + 1
+        }
+        if (bestiary.collection[_num].ac != ac) {
+            totalChanges = totalChanges + 1
+        }
+        if (bestiary.collection[_num].hp != hp) {
+            totalChanges = totalChanges + 1
+        }
+        if (bestiary.collection[_num].pg != pg) {
+            totalChanges = totalChanges + 1
+        }
+        
+        if (totalChanges <= 1) {
+            bestiary.collection[_num].name = name
+            bestiary.collection[_num].ac = ac
+            bestiary.collection[_num].hp = hp
+            bestiary.collection[_num].pg = pg
+        }
+        
         collectionView.reloadData()
     }
     
     func invalidInput() {
-        self.present(alertController, animated: true, completion: nil)
+        if (self.presentedViewController == nil) {
+            self.present(invalidAlertController, animated: true, completion: nil)
+        }
     }
+    
+    func entrySelected(_num: Int) {
+        lastSelected = _num
+        if (self.presentedViewController == nil) {
+            self.present(selectAlertController, animated: true, completion: nil)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        var source = sourceIndexPath[1]
+        var dest = destinationIndexPath[1]
+        if (source < dest) {
+            dest = dest + 1
+        }
+        
+        bestiary.collection.insert(bestiary.collection[source], at: dest)
+        
+        
+        if (source > dest) {
+            source = source + 1
+        }
+        
+        bestiary.collection.remove(at: source)
+        
+        collectionView.reloadData()
+    }
+    
+    func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch(gesture.state) {
+        case UIGestureRecognizerState.began:
+            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
+                break
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            for cell in collectionView.visibleCells {
+                (cell as! BestiaryEntryCell).endEditing(false)
+            }
+        case UIGestureRecognizerState.changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case UIGestureRecognizerState.ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
+
     
 }
