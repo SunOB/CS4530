@@ -9,9 +9,11 @@
 import UIKit
 
 class CharacterSheetController: UIViewController, CharacterSheetDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, StatCellDelegate, SavingThrowCellDelegate, SkillCellDelegate {
-    var contentView : CharacterSheet! {
-        return view as! CharacterSheet!
+    var scrollView : UIScrollView! {
+        return view as! UIScrollView!
     }
+    
+    var characterView = CharacterSheet()
     
     var character : Character = Character()
     
@@ -19,14 +21,14 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
     
     override func loadView() {
         super.loadView()
-        view = CharacterSheet()
-        contentView.charDelegate = self
+        view = UIScrollView(frame: UIScreen.main.bounds)
+        scrollView.backgroundColor = UIColor.white
+        characterView.charDelegate = self
          navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(clickedBack)), animated: true)
         self.navigationController?.navigationBar.isTranslucent = false;
         
         //Work on scrollview shit
-        contentView.contentSize = CGSize(width: self.view.frame.width, height: UIScreen.main.bounds.height * 2)
-
+        
     }
     
     override func viewDidLoad() {
@@ -34,32 +36,41 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         // Do any additional setup after loading the view, typically from a nib.
         self.title = "Character Sheet"
         
-        contentView.stats?.delegate = self
-        contentView.stats?.dataSource = self
-        contentView.stats?.register(StatCell.self, forCellWithReuseIdentifier: String(describing: StatCell.self))
-        contentView.stats?.tag = 0
+        characterView.stats?.delegate = self
+        characterView.stats?.dataSource = self
+        characterView.stats?.register(StatCell.self, forCellWithReuseIdentifier: String(describing: StatCell.self))
+        characterView.stats?.tag = 0
         
-        contentView.savingThrows?.delegate = self
-        contentView.savingThrows?.dataSource = self
-        contentView.savingThrows?.register(SavingThrowCell.self, forCellWithReuseIdentifier: String(describing: SavingThrowCell.self))
-        contentView.savingThrows?.tag = 1
+        characterView.savingThrows?.delegate = self
+        characterView.savingThrows?.dataSource = self
+        characterView.savingThrows?.register(SavingThrowCell.self, forCellWithReuseIdentifier: String(describing: SavingThrowCell.self))
+        characterView.savingThrows?.tag = 1
         
-        contentView.skills?.delegate = self
-        contentView.skills?.dataSource = self
-        contentView.skills?.register(SkillCell.self, forCellWithReuseIdentifier: String(describing: SkillCell.self))
-        contentView.skills?.tag = 2
+        characterView.skills?.delegate = self
+        characterView.skills?.dataSource = self
+        characterView.skills?.register(SkillCell.self, forCellWithReuseIdentifier: String(describing: SkillCell.self))
+        characterView.skills?.tag = 2
+        
+        scrollView.addSubview(characterView)
+    }
+    
+    override func viewWillLayoutSubviews(){
+        super.viewWillLayoutSubviews()
+        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height * 2)
+        characterView.bounds.size = scrollView.contentSize
+        characterView.center = CGPoint(x: scrollView.center.x, y: scrollView.center.y * 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView.tag == 0 {
-           return CGSize(width: contentView.stats!.frame.width, height: contentView.stats!.frame.height / 6)
+           return CGSize(width: characterView.stats!.frame.width, height: characterView.stats!.frame.height / 6)
         }
         else if collectionView.tag == 1 {
-            return CGSize(width: contentView.savingThrows!.frame.width, height: contentView.savingThrows!.frame.height / 6)
+            return CGSize(width: characterView.savingThrows!.frame.width, height: characterView.savingThrows!.frame.height / 6)
         }
         else {
-            return CGSize(width: contentView.skills!.frame.width, height: contentView.skills!.frame.height / 9)
+            return CGSize(width: characterView.skills!.frame.width, height: characterView.skills!.frame.height / 9)
         }
     }
     
@@ -145,7 +156,7 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         else {
             character.savingThrowProficiencies[num] = true
         }
-        contentView.savingThrows?.reloadData()
+        characterView.savingThrows?.reloadData()
     }
     
     func skillChanged(num: Int, value: Int) {
@@ -159,6 +170,6 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         else {
             character.skillProficiencies[num] = true
         }
-        contentView.skills?.reloadData()
+        characterView.skills?.reloadData()
     }
 }

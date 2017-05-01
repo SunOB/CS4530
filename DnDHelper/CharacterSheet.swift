@@ -13,7 +13,7 @@ protocol CharacterSheetDelegate {
     func spellbookPressed(sender: UIButton!)
 }
 
-class CharacterSheet : UIScrollView {
+class CharacterSheet : UIView {
     let fontSize : CGFloat = 7.5
     var charDelegate : CharacterSheetDelegate!
     
@@ -50,6 +50,11 @@ class CharacterSheet : UIScrollView {
     private var savingThrowLabel : UILabel?
     private var skillLabel : UILabel?
     
+    // Do this shit
+    private var attacksText : UITextView?
+    private var featsAndFeaturesText : UITextView?
+    private var equipmentText : UITextView?
+    
     //Text Fields
     private var nameText : UITextField?
     private var gameText : UITextField?
@@ -74,9 +79,9 @@ class CharacterSheet : UIScrollView {
     private var proficiencyText : UITextField?
     private var inspirationText : UITextField?
     
-    private var attacksText : UITextField?
-    private var featsAndFeaturesText : UITextField?
-    private var equipmentText : UITextField?
+    private var attacksText : UITextView?
+    private var featsAndFeaturesText : UITextView?
+    private var equipmentText : UITextView?
     
     //Buttons
     private var backstory : UIButton?
@@ -307,7 +312,7 @@ class CharacterSheet : UIScrollView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         var r: CGRect = bounds
-        let h: CGFloat = r.height
+        let h: CGFloat = r.height / 2
         let w: CGFloat = r.width
         
         var temp: CGRect
@@ -402,6 +407,10 @@ class CharacterSheet : UIScrollView {
         (savingThrows!.frame, temp) = temp.divided(atDistance: w * 0.20, from: .minXEdge)
         (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
         (skills!.frame, temp) = temp.divided(atDistance: w * 0.53, from: .minXEdge)
+        
+        
+        
+        
         (backstory!.frame, r) = r.divided(atDistance: w, from: .minXEdge)
     }
     
