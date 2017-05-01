@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterSheetController: UIViewController, CharacterSheetDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, StatCellDelegate, SavingThrowCellDelegate, SkillCellDelegate {
+class CharacterSheetController: UIViewController, CharacterSheetDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, StatCellDelegate, SavingThrowCellDelegate, SkillCellDelegate, AttackCellDelegate {
     var scrollView : UIScrollView! {
         return view as! UIScrollView!
     }
@@ -51,14 +51,19 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         characterView.skills?.register(SkillCell.self, forCellWithReuseIdentifier: String(describing: SkillCell.self))
         characterView.skills?.tag = 2
         
+        characterView.attackCollection?.delegate = self
+        characterView.attackCollection?.dataSource = self
+        characterView.attackCollection?.register(AttackCell.self, forCellWithReuseIdentifier: String(describing: AttackCell.self))
+        characterView.attackCollection?.tag = 3
+        
         scrollView.addSubview(characterView)
     }
     
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
-        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height * 2)
+        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height * 3)
         characterView.bounds.size = scrollView.contentSize
-        characterView.center = CGPoint(x: scrollView.center.x, y: scrollView.center.y * 2)
+        characterView.center = CGPoint(x: scrollView.center.x, y: scrollView.center.y * 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -69,8 +74,11 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         else if collectionView.tag == 1 {
             return CGSize(width: characterView.savingThrows!.frame.width, height: characterView.savingThrows!.frame.height / 6)
         }
-        else {
+        else if collectionView.tag == 2{
             return CGSize(width: characterView.skills!.frame.width, height: characterView.skills!.frame.height / 9)
+        }
+        else {
+            return CGSize(width: characterView.attackCollection!.frame.width, height: characterView.attackCollection!.frame.height / 4)
         }
     }
     
@@ -81,8 +89,11 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         else if collectionView.tag == 1 {
             return character.savingThrows.count
         }
-        else {
+        else if collectionView.tag == 2 {
             return character.skills.count
+        }
+        else {
+            return character.attacks.count
         }
     }
     
@@ -106,18 +117,25 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
             cell.num = indexPath[1]
             cell.delegate = self
             
-            cell.layer.borderColor = UIColor.black.cgColor
-            
             return cell
         }
-        else {
+        else if collectionView.tag == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SkillCell.self), for: indexPath) as! SkillCell
             
             cell.updateCell(stat: character.skillLabels[indexPath[1]], value: character.skills[indexPath[1]], proficient: character.skillProficiencies[indexPath[1]])
             cell.num = indexPath[1]
             cell.delegate = self
             
-            cell.layer.borderColor = UIColor.black.cgColor
+            return cell
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AttackCell.self), for: indexPath) as! AttackCell
+            
+            let temp = character.attacks[indexPath[1]]
+            
+            cell.updateCell(name: temp.name, attackBonus: temp.attackBonus, damageDie: temp.damageDie, damageDieCount: temp.damageDieCount, damageBonus: temp.damageBonus, type: temp.type, bonusEffects: temp.bonusEffects)
+            cell.num = indexPath[1]
+            cell.delegate = self
             
             return cell
         }
@@ -171,5 +189,23 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
             character.skillProficiencies[num] = true
         }
         characterView.skills?.reloadData()
+    }
+    
+    func attackChanged(_num: Int, name: String, attackBonus : Int, damageDie : Int, damageDieCount : Int, damageBonus : Int, type : String, bonusEffects : String) {
+        let temp = character.attacks[_num]
+        temp.name = name
+        temp.attackBonus = attackBonus
+        temp.damageDie = damageDie
+        temp.damageDieCount = damageDieCount
+        temp.damageBonus = damageBonus
+        temp.type = type
+        temp.bonusEffects = bonusEffects
+        
+        characterView.attackCollection?.reloadData()
+    }
+    
+    func addAttack() {
+        character.attacks.append(Attack())
+        characterView.attackCollection?.reloadData()
     }
 }

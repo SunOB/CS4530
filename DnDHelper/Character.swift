@@ -9,6 +9,7 @@
 import Foundation
 
 class Attack: NSObject, NSCoding {
+    var name : String
     var attackBonus : Int
     var damageDie : Int
     var damageDieCount : Int
@@ -17,17 +18,19 @@ class Attack: NSObject, NSCoding {
     var bonusEffects : String
     
     override init() {
+        name = "Attack"
         attackBonus = 0
         damageDie = 0
         damageDieCount = 0
         damageBonus = 0
-        type = ""
-        bonusEffects = ""
+        type = "Type"
+        bonusEffects = "Other Effects"
         super.init()
     }
     
     //Encode data
     func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "Name")
         aCoder.encode(attackBonus, forKey: "AttackBonus")
         aCoder.encode(damageDie, forKey: "DmgDie")
         aCoder.encode(damageDieCount, forKey: "DmgDieCount")
@@ -38,6 +41,7 @@ class Attack: NSObject, NSCoding {
     
     //Decode data
     required init?(coder aDecoder: NSCoder) {
+        name = aDecoder.decodeObject(forKey: "Name") as! String
         attackBonus = aDecoder.decodeInteger(forKey: "AttackBonus")
         damageDie = aDecoder.decodeInteger( forKey: "DmgDie")
         damageDieCount = aDecoder.decodeInteger(forKey: "DmgDieCount")

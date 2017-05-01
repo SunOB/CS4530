@@ -13,7 +13,7 @@ class Description: NSObject, NSCoding, ModuleContent {
     var text : String
     
     override init() {
-        title = ""
+        title = "Description"
         text = ""
         super.init()
     }

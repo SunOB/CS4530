@@ -16,7 +16,7 @@ class Module: NSObject, NSCoding {
     var num : Int
     
     override init() {
-        name = ""
+        name = "Module"
         shortDescription = ""
         modulePanels = []
         completed = false

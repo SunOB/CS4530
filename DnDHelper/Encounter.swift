@@ -39,7 +39,7 @@ class Encounter: NSObject, NSCoding, ModuleContent {
     }
     
     override init() {
-        name = ""
+        name = "Encounter"
         combatants = []
         super.init()
     }

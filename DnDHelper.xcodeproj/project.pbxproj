@@ -22,6 +22,8 @@
 		CE7000431EB2B3EC008A392C /* CombatantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7000421EB2B3EC008A392C /* CombatantCell.swift */; };
 		CE7000471EB2B424008A392C /* BestiaryCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */; };
 		CE7000491EB2B5E1008A392C /* BestiaryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */; };
+		CE7AC8F91EB7C4E40068083E /* AttackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AC8F81EB7C4E40068083E /* AttackCell.swift */; };
+		CE7AC8FB1EB7DD5C0068083E /* DeathSavingThrowButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AC8FA1EB7DD5C0068083E /* DeathSavingThrowButtonGroup.swift */; };
 		CE8670D01EB12F6F00736BBD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8670CF1EB12F6F00736BBD /* Default-568h@2x.png */; };
 		CE8670D21EB14D5D00736BBD /* SpellbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670D11EB14D5D00736BBD /* SpellbookView.swift */; };
 		CE8670D41EB14F2500736BBD /* Combatant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8670D31EB14F2500736BBD /* Combatant.swift */; };
@@ -72,6 +74,8 @@
 		CE7000421EB2B3EC008A392C /* CombatantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombatantCell.swift; sourceTree = "<group>"; };
 		CE7000461EB2B424008A392C /* BestiaryCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestiaryCollectionController.swift; sourceTree = "<group>"; };
 		CE7000481EB2B5E1008A392C /* BestiaryEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestiaryEntryCell.swift; sourceTree = "<group>"; };
+		CE7AC8F81EB7C4E40068083E /* AttackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttackCell.swift; sourceTree = "<group>"; };
+		CE7AC8FA1EB7DD5C0068083E /* DeathSavingThrowButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeathSavingThrowButtonGroup.swift; sourceTree = "<group>"; };
 		CE8670CF1EB12F6F00736BBD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE8670D11EB14D5D00736BBD /* SpellbookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookView.swift; sourceTree = "<group>"; };
 		CE8670D31EB14F2500736BBD /* Combatant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combatant.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 		CE7000401EB2B3B6008A392C /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				CE7AC8FA1EB7DD5C0068083E /* DeathSavingThrowButtonGroup.swift */,
+				CE7AC8F81EB7C4E40068083E /* AttackCell.swift */,
 				CE1561C61EAC290C00EF04A5 /* CharacterSheet.swift */,
 				CEBEA7181EB6BC470008EAF8 /* StatCell.swift */,
 				CEBEA71A1EB6CE290008EAF8 /* SavingThrowCell.swift */,
@@ -343,6 +349,7 @@
 				CE91B5BD1EB540EE009B9B2C /* ModuleCollectionController.swift in Sources */,
 				CEBEA7131EB68D7B0008EAF8 /* CampaignCell.swift in Sources */,
 				CE7000491EB2B5E1008A392C /* BestiaryEntryCell.swift in Sources */,
+				CE7AC8FB1EB7DD5C0068083E /* DeathSavingThrowButtonGroup.swift in Sources */,
 				CE8670E01EB15C5000736BBD /* Description.swift in Sources */,
 				CEBEA7191EB6BC470008EAF8 /* StatCell.swift in Sources */,
 				CE1561BA1EAC21FC00EF04A5 /* TitleScreen.swift in Sources */,
@@ -350,6 +357,7 @@
 				CE1561C31EAC26A500EF04A5 /* CharacterCollectionController.swift in Sources */,
 				CE8670EA1EB1647E00736BBD /* PlayerBackstoryView.swift in Sources */,
 				CE1561C11EAC260F00EF04A5 /* CharacterCell.swift in Sources */,
+				CE7AC8F91EB7C4E40068083E /* AttackCell.swift in Sources */,
 				CE8670F61EB1776E00736BBD /* SpellCell.swift in Sources */,
 				CE1561C91EAC32E300EF04A5 /* CharacterSheetController.swift in Sources */,
 				CEBEA7111EB68D580008EAF8 /* CampaignCollectionController.swift in Sources */,

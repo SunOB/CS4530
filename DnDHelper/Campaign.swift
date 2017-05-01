@@ -29,7 +29,7 @@ class Campaign: NSObject, NSCoding {
     }
     
     override init() {
-        name = ""
+        name = "Campaign"
         shortDescription = ""
         modules = []
         super.init()

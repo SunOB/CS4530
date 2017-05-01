@@ -11,6 +11,7 @@ import UIKit
 protocol CharacterSheetDelegate {
     func backstoryPressed(sender: UIButton!)
     func spellbookPressed(sender: UIButton!)
+    func addAttack()
 }
 
 class CharacterSheet : UIView {
@@ -51,7 +52,6 @@ class CharacterSheet : UIView {
     private var skillLabel : UILabel?
     
     // Do this shit
-    private var attacksText : UITextView?
     private var featsAndFeaturesText : UITextView?
     private var equipmentText : UITextView?
     
@@ -79,18 +79,17 @@ class CharacterSheet : UIView {
     private var proficiencyText : UITextField?
     private var inspirationText : UITextField?
     
-    private var attacksText : UITextView?
-    private var featsAndFeaturesText : UITextView?
-    private var equipmentText : UITextView?
-    
     //Buttons
     private var backstory : UIButton?
     private var spellbook : UIButton?
+    private var addAttack : UIButton?
     
     //Collections
     var stats : UICollectionView?
     var savingThrows : UICollectionView?
     var skills : UICollectionView?
+    
+    var attackCollection : UICollectionView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -100,14 +99,17 @@ class CharacterSheet : UIView {
         stats = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         savingThrows = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         skills = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        attackCollection = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         
         stats?.layer.borderWidth = 1
         savingThrows?.layer.borderWidth = 1
         skills?.layer.borderWidth = 1
+        attackCollection?.layer.borderWidth = 1
         
         stats?.layer.borderColor = UIColor.black.cgColor
         savingThrows?.layer.borderColor = UIColor.black.cgColor
         skills?.layer.borderColor = UIColor.black.cgColor
+        attackCollection?.layer.borderColor = UIColor.black.cgColor
         
         name = UILabel()
         game = UILabel()
@@ -137,6 +139,20 @@ class CharacterSheet : UIView {
         savingThrowLabel = UILabel()
         skillLabel = UILabel()
         
+        attacks = UILabel()
+        featsAndFeatures = UILabel()
+        equipment = UILabel()
+        
+        featsAndFeaturesText = UITextView()
+        equipmentText = UITextView()
+        
+        featsAndFeaturesText?.layer.borderColor = UIColor.black.cgColor
+        featsAndFeaturesText?.layer.borderWidth = 1
+
+        equipmentText?.layer.borderColor = UIColor.black.cgColor
+        equipmentText?.layer.borderWidth = 1
+
+        
         nameText = UITextField()
         gameText = UITextField()
         genderText = UITextField()
@@ -162,10 +178,13 @@ class CharacterSheet : UIView {
         
         backstory = UIButton()
         spellbook = UIButton()
+        addAttack = UIButton()
         
         backstory?.addTarget(self, action: #selector(backstoryButtonPressed), for: .touchUpInside)
         spellbook?.addTarget(self, action: #selector(spellbookButtonPressed), for: .touchUpInside)
+        addAttack?.addTarget(self, action: #selector(addAttackPressed), for: .touchUpInside)
         
+        addAttack?.titleLabel?.font = UIFont(name: "Helvetica", size: fontSize)
         name?.font = UIFont(name: "Helvetica", size: fontSize)
         game?.font = UIFont(name: "Helvetica", size: fontSize)
         gender?.font = UIFont(name: "Helvetica", size: fontSize)
@@ -187,6 +206,13 @@ class CharacterSheet : UIView {
         deathSaves?.font = UIFont(name: "Helvetica", size: fontSize)
         proficiency?.font = UIFont(name: "Helvetica", size: fontSize)
         inspiration?.font = UIFont(name: "Helvetica", size: fontSize)
+        
+        attacks?.font = UIFont(name: "Helvetica", size: fontSize)
+        featsAndFeatures?.font = UIFont(name: "Helvetica", size: fontSize)
+        equipment?.font = UIFont(name: "Helvetica", size: fontSize)
+        
+        featsAndFeaturesText?.font = UIFont(name: "Helvetica", size: fontSize)
+        equipmentText?.font = UIFont(name: "Helvetica", size: fontSize)
         
         statLabel?.font = UIFont(name: "Helvetica", size: fontSize)
         savingThrowLabel?.font = UIFont(name: "Helvetica", size: fontSize)
@@ -220,6 +246,10 @@ class CharacterSheet : UIView {
         statLabel?.text = "Stats:"
         savingThrowLabel?.text = "Saving Throws:"
         skillLabel?.text = "Skills:"
+        
+        attacks?.text = "Attacks:"
+        featsAndFeatures?.text = "Feats & Features:"
+        equipment?.text = "Equipment:"
 
         nameText?.borderStyle = UITextBorderStyle.bezel
         gameText?.borderStyle = UITextBorderStyle.bezel
@@ -249,6 +279,9 @@ class CharacterSheet : UIView {
         spellbook?.setTitle("Spellbook", for: .normal)
         spellbook?.backgroundColor = UIColor.blue
         
+        addAttack?.setTitle("Add Attack", for: .normal)
+        addAttack?.backgroundColor = UIColor.green
+        
         addSubview(name!)
         addSubview(game!)
         addSubview(gender!)
@@ -271,6 +304,10 @@ class CharacterSheet : UIView {
         addSubview(proficiency!)
         addSubview(inspiration!)
         
+        addSubview(attacks!)
+        addSubview(featsAndFeatures!)
+        addSubview(equipment!)
+        
         addSubview(nameText!)
         addSubview(gameText!)
         addSubview(genderText!)
@@ -292,12 +329,17 @@ class CharacterSheet : UIView {
         addSubview(proficiencyText!)
         addSubview(inspirationText!)
         
+        addSubview(featsAndFeaturesText!)
+        addSubview(equipmentText!)
+        
         addSubview(backstory!)
         addSubview(spellbook!)
+        addSubview(addAttack!)
         
         addSubview(stats!)
         addSubview(savingThrows!)
         addSubview(skills!)
+        addSubview(attackCollection!)
         
         addSubview(statLabel!)
         addSubview(savingThrowLabel!)
@@ -312,7 +354,7 @@ class CharacterSheet : UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         var r: CGRect = bounds
-        let h: CGFloat = r.height / 2
+        let h: CGFloat = r.height / 3
         let w: CGFloat = r.width
         
         var temp: CGRect
@@ -408,8 +450,22 @@ class CharacterSheet : UIView {
         (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
         (skills!.frame, temp) = temp.divided(atDistance: w * 0.53, from: .minXEdge)
         
+        (_, r) = r.divided(atDistance: h * 0.025, from: .minYEdge)
+        (temp, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
+
+        (attacks!.frame, temp) = temp.divided(atDistance: w * 0.5, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.1, from: .minXEdge)
+        (addAttack!.frame, temp) = temp.divided(atDistance: w * 0.2, from: .minXEdge)
+        (_, r) = r.divided(atDistance: h * 0.025, from: .minYEdge)
+
+        (attackCollection!.frame, r) = r.divided(atDistance: h * 0.5, from: .minYEdge)
         
-        
+        (featsAndFeatures!.frame, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
+        (featsAndFeaturesText!.frame, r) = r.divided(atDistance: h * 0.3, from: .minYEdge)
+        (equipment!.frame, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
+        (equipmentText!.frame, r) = r.divided(atDistance: h * 0.2, from: .minYEdge)
+
+
         
         (backstory!.frame, r) = r.divided(atDistance: w, from: .minXEdge)
     }
@@ -426,4 +482,7 @@ class CharacterSheet : UIView {
         charDelegate.spellbookPressed(sender: sender)
     }
     
+    func addAttackPressed(sender: UIButton!) {
+        charDelegate.addAttack()
+    }
 }
