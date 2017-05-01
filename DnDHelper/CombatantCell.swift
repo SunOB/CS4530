@@ -14,7 +14,7 @@ protocol CombatantDelegate {
     func deletePressed(_num: Int)
 }
 
-class CombatantCell : UICollectionViewCell {
+class CombatantCell : UICollectionViewCell, UITextFieldDelegate {
     var delegate : CombatantDelegate!
     private var acLabel : UILabel?
     private var hpLabel : UILabel?
@@ -44,6 +44,11 @@ class CombatantCell : UICollectionViewCell {
         hpText = UITextField()
         pgText = UITextField()
         initiativeText = UITextField()
+        
+        acText?.delegate = self
+        hpText?.delegate = self
+        pgText?.delegate = self
+        initiativeText?.delegate = self
         
         deleteButton = UIButton()
         deleteButton?.addTarget(self, action: #selector(deletePressed),for: .touchUpInside)
@@ -198,5 +203,13 @@ class CombatantCell : UICollectionViewCell {
     func deletePressed(sender: UIButton) {
         endEditing(false)
         delegate.deletePressed(_num: num)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        return string == numberFiltered
     }
 }

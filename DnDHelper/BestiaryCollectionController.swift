@@ -12,7 +12,7 @@ protocol BestiaryCollectionDelegate {
     func addSelectedCombatant(num: Int, count: Int)
 }
 
-class BestiaryCollectionController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BestiaryEntryDelegate, UIGestureRecognizerDelegate {
+class BestiaryCollectionController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, BestiaryEntryDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate {
     var collectionView : CollectionView {return view as! CollectionView}
     var collectionViewFlowLayout : UICollectionViewFlowLayout { return collectionView.collectionViewLayout as! UICollectionViewFlowLayout }
     var bestiary : Bestiary = Bestiary()
@@ -25,10 +25,19 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
     
     var lastSelected : Int!
     
+    init(bestiary: Bestiary) {
+        self.bestiary = bestiary
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         super.loadView()
         invalidAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
-        
+        selectAlertController.textFields?[0].delegate = self
         selectAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         selectAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:
         {
@@ -48,7 +57,7 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
         
         view = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.navigationController?.navigationBar.isTranslucent = false
-        navigationItem.setRightBarButton(UIBarButtonItem(title: "New Entry", style: .plain, target: self, action: #selector(newEntry)), animated: true)
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "New Bestiary Entry", style: .plain, target: self, action: #selector(newEntry)), animated: true)
         navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backPressed)), animated: true)
         
         view.backgroundColor = UIColor.white
@@ -56,6 +65,7 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         longPressGesture.delegate = self
         self.collectionView.addGestureRecognizer(longPressGesture)
+        navigationController?.title = "Bestiary"
     }
     
     override func viewDidLoad() {
@@ -175,5 +185,11 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
         }
     }
 
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        return string == numberFiltered
+    }
 }

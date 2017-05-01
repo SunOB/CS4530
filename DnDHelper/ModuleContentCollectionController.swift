@@ -16,15 +16,26 @@ class ModuleContentCollectionController : UIViewController, UICollectionViewData
     var collectionView : CollectionView {return view as! CollectionView}
     var collectionViewFlowLayout : UICollectionViewFlowLayout { return collectionView.collectionViewLayout as! UICollectionViewFlowLayout }
     var module : Module = Module()
-    
+
     var delegate : ModuleContentDelegate!
     
     let addAlertController = UIAlertController(title: "Choose a panel type", message: "", preferredStyle: .alert)
     
-    let encounterView: EncounterCollectionController = EncounterCollectionController()
+    let encounterView: EncounterCollectionController?
     let descriptionView : DescriptionController = DescriptionController()
     
     var longPressGesture : UILongPressGestureRecognizer!
+    var _bestiary : Bestiary
+    
+    init(bestiary: Bestiary) {
+        _bestiary = bestiary
+        encounterView = EncounterCollectionController(bestiary: bestiary)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -33,8 +44,8 @@ class ModuleContentCollectionController : UIViewController, UICollectionViewData
         { (UIAlertAction) -> Void in
             let temp = Encounter()
             self.module.modulePanels.append(temp)
-            self.encounterView.encounter = temp
-            _ = self.navigationController?.pushViewController(self.encounterView, animated: true)
+            self.encounterView?.encounter = temp
+            _ = self.navigationController?.pushViewController(self.encounterView!, animated: true)
             
         }))
         addAlertController.addAction(UIAlertAction(title: "Description", style: UIAlertActionStyle.default, handler:
@@ -127,7 +138,7 @@ class ModuleContentCollectionController : UIViewController, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 100)
+        return CGSize(width: UIScreen.main.bounds.width, height: 150)
     }
     
     func encDeleteCell(_num: Int) {
@@ -136,8 +147,8 @@ class ModuleContentCollectionController : UIViewController, UICollectionViewData
     }
     func encEditCell(_num: Int) {
         module.name = (self.navigationItem.titleView as! UITextField).text!
-        encounterView.encounter = module.modulePanels[_num] as! Encounter
-        _ = navigationController?.pushViewController(encounterView, animated: true)
+        encounterView?.encounter = module.modulePanels[_num] as! Encounter
+        _ = navigationController?.pushViewController(encounterView!, animated: true)
     }
     func descDeleteCell(_num: Int) {
         module.modulePanels.remove(at: _num)

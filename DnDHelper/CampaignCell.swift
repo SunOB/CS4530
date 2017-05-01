@@ -1,31 +1,28 @@
 //
-//  ModuleCell.swift
+//  CampaignCell.swift
 //  DnDHelper
 //
-//  Created by u0771753 on 4/29/17.
+//  Created by u0771753 on 4/30/17.
 //  Copyright © 2017 u0771753. All rights reserved.
 //
 
 import UIKit
 
-protocol ModuleCellDelegate {
+protocol CampaignCellDelegate {
     func editCell(_num: Int)
     func deleteCell(_num: Int)
-    func toggleCompleteCell(_num: Int)
     func updateName(_num: Int, name: String)
     func updateShortDesc(_num: Int, shortDesc : String)
 }
 
-class ModuleCell : UICollectionViewCell, UITextViewDelegate {
-    var delegate : ModuleCellDelegate!
+class CampaignCell : UICollectionViewCell, UITextViewDelegate {
+    var delegate : CampaignCellDelegate!
     private var shortDescLabel : UILabel?
     private var nameText : UITextField?
     private var shortDescText : UITextView?
-    private var completedLabel : UILabel?
     
     private var editButton : UIButton?
     private var deleteButton : UIButton?
-    private var completedButton : UIButton?
     var num : Int!
     
     override init(frame: CGRect) {
@@ -36,13 +33,11 @@ class ModuleCell : UICollectionViewCell, UITextViewDelegate {
         
         shortDescText = UITextView()
         
-        completedLabel = UILabel()
-        
         editButton = UIButton()
         editButton?.addTarget(self, action: #selector(editPressed),for: .touchUpInside)
         
         editButton?.titleLabel?.font = UIFont(name: "Helvetica", size: 7.5)
-        editButton?.setTitle("View Content", for: .normal)
+        editButton?.setTitle("View Modules", for: .normal)
         
         editButton?.titleLabel?.numberOfLines = 2
         editButton?.titleLabel?.lineBreakMode = .byWordWrapping
@@ -55,15 +50,10 @@ class ModuleCell : UICollectionViewCell, UITextViewDelegate {
         deleteButton?.setTitle("Delete", for: .normal)
         deleteButton?.contentHorizontalAlignment = .center
         
-        completedButton = UIButton()
-        completedButton?.addTarget(self, action: #selector(completePressed),for: .touchUpInside)
-        
         shortDescLabel?.text = "Short Description: "
-        completedLabel?.text = "Completed:"
         nameText?.text = ""
         
         shortDescLabel?.font = UIFont(name: "Helvetica", size: 7.5)
-        completedLabel?.font = UIFont(name: "Helvetica", size: 7.5)
         
         nameText?.font = UIFont(name: "Helvetica", size: 7.5)
         nameText?.backgroundColor = UIColor.lightText
@@ -73,19 +63,15 @@ class ModuleCell : UICollectionViewCell, UITextViewDelegate {
         
         nameText?.addTarget(self, action: #selector(nameChanged), for: .editingDidEnd)
         shortDescText?.delegate = self
-    
+        
         editButton?.backgroundColor = UIColor.darkGray
         deleteButton?.backgroundColor = UIColor.green
-        completedButton?.setBackgroundImage(#imageLiteral(resourceName: "EmptyCheckbox"), for: .normal)
-
         
         contentView.addSubview(shortDescLabel!)
         contentView.addSubview(nameText!)
         contentView.addSubview(shortDescText!)
         contentView.addSubview(editButton!)
         contentView.addSubview(deleteButton!)
-        contentView.addSubview(completedButton!)
-        contentView.addSubview(completedLabel!)
         
         backgroundColor = UIColor.blue
     }
@@ -94,16 +80,10 @@ class ModuleCell : UICollectionViewCell, UITextViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(name : String, shortDesc : String, completed: Bool) {
+    func update(name : String, shortDesc : String) {
         nameText?.text = name
         shortDescText?.text = shortDesc
-        
-        if completed {
-            completedButton?.setBackgroundImage(#imageLiteral(resourceName: "CheckedCheckbox"), for: .normal)
-        }
-        else {
-            completedButton?.setBackgroundImage(#imageLiteral(resourceName: "EmptyCheckbox"), for: .normal)
-        }
+        setNeedsLayout()
     }
     
     override func layoutSubviews() {
@@ -117,13 +97,6 @@ class ModuleCell : UICollectionViewCell, UITextViewDelegate {
         
         //MaxXEdge
         (_, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.05, from: .maxXEdge)
-        (completedButton!.frame, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.1, from: .maxXEdge)
-        
-        (completedLabel!.frame, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.14, from: .maxXEdge)
-        
-        (_, completedButton!.frame) = completedButton!.frame.divided(atDistance: w * 0.025, from: .minXEdge)
-        (_, completedButton!.frame) = completedButton!.frame.divided(atDistance: h * 0.025, from: .minYEdge)
-        (_, completedButton!.frame) = completedButton!.frame.divided(atDistance: h * 0.025, from: .maxYEdge)
         
         (deleteButton!.frame, nameText!.frame) = nameText!.frame.divided(atDistance: w * 0.15, from: .maxXEdge)
         
@@ -165,13 +138,5 @@ class ModuleCell : UICollectionViewCell, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         delegate.updateShortDesc(_num: num, shortDesc: (shortDescText?.text)!)
     }
-    
-    func completePressed() {
-        //Add image swapping here
-        delegate.toggleCompleteCell(_num: num)
-        setNeedsDisplay()
-    }
 }
-
-
 

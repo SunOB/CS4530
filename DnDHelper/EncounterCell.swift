@@ -35,7 +35,10 @@ class EncounterCell : UICollectionViewCell {
         editButton?.addTarget(self, action: #selector(editPressed),for: .touchUpInside)
         
         editButton?.titleLabel?.font = UIFont(name: "Helvetica", size: 7.5)
-        editButton?.setTitle("Edit", for: .normal)
+        editButton?.setTitle("View Combat", for: .normal)
+        
+        editButton?.titleLabel?.numberOfLines = 2
+        editButton?.titleLabel?.lineBreakMode = .byWordWrapping
         editButton?.contentHorizontalAlignment = .center
         
         deleteButton = UIButton()

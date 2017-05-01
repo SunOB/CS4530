@@ -13,7 +13,7 @@ protocol CharacterSheetDelegate {
     func spellbookPressed(sender: UIButton!)
 }
 
-class CharacterSheet : UIView {
+class CharacterSheet : UIScrollView {
     let fontSize : CGFloat = 7.5
     var charDelegate : CharacterSheetDelegate!
     
@@ -46,6 +46,10 @@ class CharacterSheet : UIView {
     private var featsAndFeatures : UILabel?
     private var equipment : UILabel?
     
+    private var statLabel : UILabel?
+    private var savingThrowLabel : UILabel?
+    private var skillLabel : UILabel?
+    
     //Text Fields
     private var nameText : UITextField?
     private var gameText : UITextField?
@@ -74,15 +78,31 @@ class CharacterSheet : UIView {
     private var featsAndFeaturesText : UITextField?
     private var equipmentText : UITextField?
     
+    //Buttons
     private var backstory : UIButton?
     private var spellbook : UIButton?
     
+    //Collections
+    var stats : UICollectionView?
+    var savingThrows : UICollectionView?
+    var skills : UICollectionView?
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = UIColor.white
+        
+        stats = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        savingThrows = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        skills = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        stats?.layer.borderWidth = 1
+        savingThrows?.layer.borderWidth = 1
+        skills?.layer.borderWidth = 1
+        
+        stats?.layer.borderColor = UIColor.black.cgColor
+        savingThrows?.layer.borderColor = UIColor.black.cgColor
+        skills?.layer.borderColor = UIColor.black.cgColor
         
         name = UILabel()
         game = UILabel()
@@ -107,6 +127,10 @@ class CharacterSheet : UIView {
         deathSaves = UILabel()
         proficiency = UILabel()
         inspiration = UILabel()
+        
+        statLabel = UILabel()
+        savingThrowLabel = UILabel()
+        skillLabel = UILabel()
         
         nameText = UITextField()
         gameText = UITextField()
@@ -159,6 +183,10 @@ class CharacterSheet : UIView {
         proficiency?.font = UIFont(name: "Helvetica", size: fontSize)
         inspiration?.font = UIFont(name: "Helvetica", size: fontSize)
         
+        statLabel?.font = UIFont(name: "Helvetica", size: fontSize)
+        savingThrowLabel?.font = UIFont(name: "Helvetica", size: fontSize)
+        skillLabel?.font = UIFont(name: "Helvetica", size: fontSize)
+        
         name?.text = "   Name: "
         game?.text = " Game: "
         gender?.text = " Gender: "
@@ -183,6 +211,10 @@ class CharacterSheet : UIView {
         
         proficiency?.text = " Proficiency: "
         inspiration?.text = "  Inspiration: "
+        
+        statLabel?.text = "Stats:"
+        savingThrowLabel?.text = "Saving Throws:"
+        skillLabel?.text = "Skills:"
 
         nameText?.borderStyle = UITextBorderStyle.bezel
         gameText?.borderStyle = UITextBorderStyle.bezel
@@ -257,6 +289,14 @@ class CharacterSheet : UIView {
         
         addSubview(backstory!)
         addSubview(spellbook!)
+        
+        addSubview(stats!)
+        addSubview(savingThrows!)
+        addSubview(skills!)
+        
+        addSubview(statLabel!)
+        addSubview(savingThrowLabel!)
+        addSubview(skillLabel!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -350,8 +390,19 @@ class CharacterSheet : UIView {
         
         (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
         (temp, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
-        (backstory!.frame, temp) = temp.divided(atDistance: w, from: .minXEdge)
-
+        (statLabel!.frame, temp) = temp.divided(atDistance: w * 0.25, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
+        (savingThrowLabel!.frame, temp) = temp.divided(atDistance: w * 0.20, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
+        (skillLabel!.frame, temp) = temp.divided(atDistance: w * 0.53, from: .minXEdge)
+        
+        (temp, r) = r.divided(atDistance: h * 0.5, from: .minYEdge)
+        (stats!.frame, temp) = temp.divided(atDistance: w * 0.25, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
+        (savingThrows!.frame, temp) = temp.divided(atDistance: w * 0.20, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
+        (skills!.frame, temp) = temp.divided(atDistance: w * 0.53, from: .minXEdge)
+        (backstory!.frame, r) = r.divided(atDistance: w, from: .minXEdge)
     }
     
     override public func draw(_ rect: CGRect) {

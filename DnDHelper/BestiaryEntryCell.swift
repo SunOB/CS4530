@@ -17,7 +17,7 @@ protocol BestiaryEntryDelegate {
     func entrySelected(_num: Int)
 }
 
-class BestiaryEntryCell : UICollectionViewCell {
+class BestiaryEntryCell : UICollectionViewCell, UITextFieldDelegate {
     var delegate : BestiaryEntryDelegate!
     private var acLabel : UILabel?
     private var hpLabel : UILabel?
@@ -43,6 +43,10 @@ class BestiaryEntryCell : UICollectionViewCell {
         acText = UITextField()
         hpText = UITextField()
         pgText = UITextField()
+        
+        acText?.delegate = self
+        hpText?.delegate = self
+        pgText?.delegate = self
         
         selectButton = UIButton()
         selectButton?.addTarget(self, action: #selector(selectPressed),for: .touchUpInside)
@@ -175,5 +179,13 @@ class BestiaryEntryCell : UICollectionViewCell {
     func selectPressed(sender: UIButton) {
         endEditing(false)
         delegate.entrySelected(_num: num)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        return string == numberFiltered
     }
 }

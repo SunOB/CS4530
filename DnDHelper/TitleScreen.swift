@@ -56,10 +56,13 @@ class TitleScreen: UIView {
         super.layoutSubviews()
         var r: CGRect = bounds
         let h: CGFloat = r.height
+        let w: CGFloat = r.width
         
         (title!.frame, r) = r.divided(atDistance: h * 0.4, from: .minYEdge)
-        (dmButton!.frame, r) = r.divided(atDistance: h * 0.2, from: .minYEdge)
-        (playerButton!.frame, r) = r.divided(atDistance: h * 0.2, from: .minYEdge)
+        
+        dmButton!.frame = CGRect(x: w * 0.2, y: title!.frame.maxY + 10, width: w * 0.6, height: 75)
+        
+        playerButton!.frame = CGRect(x: w * 0.2, y: dmButton!.frame.maxY + 100, width: w * 0.6, height: 75 )
     }
     
     override public func draw(_ rect: CGRect) {

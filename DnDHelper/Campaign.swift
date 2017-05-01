@@ -11,7 +11,22 @@ import Foundation
 class Campaign: NSObject, NSCoding {
     var name : String
     var shortDescription : String
-    var modules : [Module]
+    private var modules : [Module]
+    
+    var currentModules : [Module] {
+        var temp : [Module] = []
+        for module in modules {
+            if !module.completed {
+                temp.append(module)
+            }
+        }
+        
+        return temp
+    }
+    
+    var count : Int {
+        return modules.count
+    }
     
     override init() {
         name = ""
@@ -33,4 +48,26 @@ class Campaign: NSObject, NSCoding {
         shortDescription = aDecoder.decodeObject(forKey: "ShortDescription") as! String
         modules = aDecoder.decodeObject(forKey: "Modules") as! [Module]
     }
+    
+    func getModule(num : Int) -> Module {
+        return modules[num]
+    }
+    
+    func addModule() -> Module {
+        let temp = Module()
+        temp.num = modules.count
+        modules.append(temp)
+        return temp
+    }
+    
+    func deleteModule (num: Int) {
+        modules.remove(at: num)
+        if num < modules.count {
+            for i in num...modules.count {
+                modules[i].num -= 1
+            }
+        }
+    }
+    
+    
 }

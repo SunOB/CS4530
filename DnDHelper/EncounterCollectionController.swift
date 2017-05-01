@@ -11,21 +11,28 @@ import UIKit
 class EncounterCollectionController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CombatantDelegate, BestiaryCollectionDelegate, UIGestureRecognizerDelegate {
     var collectionView : CollectionView {return view as! CollectionView}
     var collectionViewFlowLayout : UICollectionViewFlowLayout { return collectionView.collectionViewLayout as! UICollectionViewFlowLayout }
-    var encounter : Encounter = Encounter()
-    var bestiary : Bestiary = Bestiary()
-        
+    var encounter : Encounter = Encounter()        
     let invalidAlertController = UIAlertController(title: "Invalid Input", message: "You did not enter a valid number", preferredStyle: .alert)
     
-    let bestiaryView: BestiaryCollectionController = BestiaryCollectionController()
+    let bestiaryView: BestiaryCollectionController?
     
     var longPressGesture : UILongPressGestureRecognizer!
+    var _bestiary : Bestiary
+    
+    init(bestiary: Bestiary) {
+        _bestiary = bestiary
+        bestiaryView = BestiaryCollectionController(bestiary: bestiary)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
         invalidAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
-        bestiaryView.bestiary = bestiary
-        
-        bestiaryView.delegate = self
+        bestiaryView?.delegate = self
         
         view = CollectionView(frame: UIScreen.main.bounds, collectionViewLayout: UICollectionViewFlowLayout())
         self.navigationController?.navigationBar.isTranslucent = false
@@ -75,7 +82,7 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     
     func addCombatant(sender: UIBarButtonItem) {
         encounter.name = (self.navigationItem.titleView as! UITextField).text!
-        _ = navigationController?.pushViewController(bestiaryView, animated: true)
+        _ = navigationController?.pushViewController(bestiaryView!, animated: true)
     }
     
     func backPressed() {
@@ -141,7 +148,7 @@ class EncounterCollectionController : UIViewController, UICollectionViewDataSour
     }
     
     func addSelectedCombatant(num: Int, count: Int) {
-        encounter.addCombatants(character: bestiary.collection[num], count: count)
+        encounter.addCombatants(character: _bestiary.collection[num], count: count)
     }
     
     // Drag and Drop Logic

@@ -13,12 +13,14 @@ class Module: NSObject, NSCoding {
     var shortDescription : String
     var modulePanels : [ModuleContent]
     var completed : Bool
+    var num : Int
     
     override init() {
         name = ""
         shortDescription = ""
         modulePanels = []
         completed = false
+        num = 0;
         super.init()
     }
     
@@ -28,6 +30,7 @@ class Module: NSObject, NSCoding {
         aCoder.encode(shortDescription, forKey: "ShortDescription")
         aCoder.encode(modulePanels, forKey: "ModulePanels")
         aCoder.encode(completed, forKey: "Completed")
+        aCoder.encode(num, forKey: "Num")
     }
     
     //Decode data
@@ -36,5 +39,6 @@ class Module: NSObject, NSCoding {
         shortDescription = aDecoder.decodeObject(forKey: "ShortDescription") as! String
         modulePanels = aDecoder.decodeObject(forKey: "ModulePanels") as! [ModuleContent]
         completed = aDecoder.decodeBool(forKey: "Completed")
+        num = aDecoder.decodeInteger(forKey: "Num")
     }
 }

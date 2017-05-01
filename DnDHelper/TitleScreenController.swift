@@ -11,7 +11,8 @@ import UIKit
 class TitleScreenController: UIViewController, TitleScreenDelegate {
     
     //Change this to point to collection
-    var player: CharacterSheetController = CharacterSheetController()
+    var playerController: CharacterSheetController = CharacterSheetController()
+    var dmController: CampaignCollectionController = CampaignCollectionController()
     
     var contentView : TitleScreen! {
         return view as! TitleScreen!
@@ -34,10 +35,11 @@ class TitleScreenController: UIViewController, TitleScreenDelegate {
     }
 
     func dmMode(sender: UIButton!) {
+        navigationController?.pushViewController(dmController, animated: true)
     }
     
     func playerMode(sender: UIButton!) {
-        navigationController?.pushViewController(player, animated: true)
+        navigationController?.pushViewController(playerController, animated: true)
     }
 }
 
