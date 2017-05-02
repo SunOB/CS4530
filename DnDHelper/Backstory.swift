@@ -33,7 +33,7 @@ class Backstory : NSObject, NSCoding {
     
     //Decode data
     required init?(coder aDecoder: NSCoder) {
-        charBackstory = aDecoder.decodeObject(forKey: "Backstory") as! String
+        charBackstory = aDecoder.decodeObject(forKey: "CharBackstory") as! String
         allies = aDecoder.decodeObject(forKey: "Allies") as! String
         featsAndTraits = aDecoder.decodeObject(forKey: "FeatsAndTraits") as! String
         treasure = aDecoder.decodeObject(forKey: "Treasure") as! String

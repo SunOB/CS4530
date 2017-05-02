@@ -8,26 +8,31 @@
 
 import UIKit
 
+protocol CharacterControllerDelegate {
+    func backFromSheet()
+}
+
 class CharacterSheetController: UIViewController, CharacterSheetDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, StatCellDelegate, SavingThrowCellDelegate, SkillCellDelegate, AttackCellDelegate {
     var scrollView : UIScrollView! {
         return view as! UIScrollView!
     }
+    
+    var delegate : CharacterControllerDelegate!
     
     var characterView = CharacterSheet()
     
     var character : Character = Character()
     
     var backstory : PlayerBackstoryController = PlayerBackstoryController()
+    var spellController : SpellbookCollectionController = SpellbookCollectionController()
     
     override func loadView() {
         super.loadView()
         view = UIScrollView(frame: UIScreen.main.bounds)
         scrollView.backgroundColor = UIColor.white
         characterView.charDelegate = self
-         navigationItem.setLeftBarButton(UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(clickedBack)), animated: true)
+         navigationItem.setLeftBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(clickedSave)), animated: true)
         self.navigationController?.navigationBar.isTranslucent = false;
-        
-        //Work on scrollview shit
         
     }
     
@@ -59,6 +64,14 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         scrollView.addSubview(characterView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        backstory.backstory = character.backstory
+        spellController.spellBook = character.spellbook
+        updateView()
+    }
+    
+    
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
         scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height * 3)
@@ -74,7 +87,7 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         else if collectionView.tag == 1 {
             return CGSize(width: characterView.savingThrows!.frame.width, height: characterView.savingThrows!.frame.height / 6)
         }
-        else if collectionView.tag == 2{
+        else if collectionView.tag == 2 {
             return CGSize(width: characterView.skills!.frame.width, height: characterView.skills!.frame.height / 9)
         }
         else {
@@ -148,14 +161,18 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
     }
     
     func backstoryPressed(sender: UIButton!) {
+        dataNeedsSaving()
         navigationController?.pushViewController(backstory, animated: true)
     }
     
     func spellbookPressed(sender: UIButton!) {
-        
+        dataNeedsSaving()
+        navigationController?.pushViewController(spellController, animated: true)
     }
     
-    func clickedBack(sender: UIBarButtonItem?) {
+    func clickedSave(sender: UIBarButtonItem?) {
+        dataNeedsSaving()
+        delegate.backFromSheet()
         _ = navigationController?.popViewController(animated: true)
     }
     
@@ -191,6 +208,16 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
         characterView.skills?.reloadData()
     }
     
+    func fail(count: Int) {
+        character.deathSavesFailed = count
+        characterView.updateDeathSaves(fails: character.deathSavesFailed , success: character.deathSavesSuceeded )
+    }
+    
+    func success(count: Int) {
+        character.deathSavesSuceeded = count
+        characterView.updateDeathSaves(fails: character.deathSavesFailed , success: character.deathSavesSuceeded )
+    }
+    
     func attackChanged(_num: Int, name: String, attackBonus : Int, damageDie : Int, damageDieCount : Int, damageBonus : Int, type : String, bonusEffects : String) {
         let temp = character.attacks[_num]
         temp.name = name
@@ -207,5 +234,43 @@ class CharacterSheetController: UIViewController, CharacterSheetDelegate, UIColl
     func addAttack() {
         character.attacks.append(Attack())
         characterView.attackCollection?.reloadData()
+    }
+    
+    func updateView() {
+        characterView.update(name: character.name, game: character.game, gender: character.gender, alignment: character.alignment, race: character.race, background: character.background, charClass: character.charClass, level: character.level, exp: character.exp, tempHP: character.tempHP, curHP: character.curHP, maxHP: character.maxHP, hitDieSize: character.hitDieSize, curHitDie: character.curHitDie, totalHitDie: character.totalHitDie, ac: character.ac, initiative: character.initiative, speed: character.speed, proficiency: character.proficiency, inspiration: character.inspiration, featsAndFeatures: character.featsTraits, equipment: character.equipment, failedSaves: character.deathSavesFailed, successfulSaves: character.deathSavesSuceeded)
+        
+        characterView.skills?.reloadData()
+        characterView.stats?.reloadData()
+        characterView.savingThrows?.reloadData()
+        characterView.attackCollection?.reloadData()
+    }
+    
+    func dataNeedsSaving() {
+        character.game = characterView._game
+        character.name = characterView._name
+        character.gender = characterView._gender
+        character.alignment = characterView._alignment
+        character.race = characterView._race
+        character.background = characterView._background
+        character.charClass = characterView._charClass
+        
+        character.level = characterView._level
+        character.exp = characterView._exp
+        character.tempHP = characterView._tempHP
+        character.curHP = characterView._curHP
+        character.maxHP = characterView._maxHP
+        character.hitDieSize = characterView._hitDieSize
+        character.curHitDie = characterView._curHitDie
+        character.totalHitDie = characterView._totalHitDie
+        character.ac = characterView._ac
+        character.initiative = characterView._initiative
+        character.speed = characterView._speed
+        character.deathSavesFailed = characterView._deathSavesFailed
+        character.deathSavesSuceeded = characterView._deathSavesSuceeded
+        character.proficiency = characterView._proficiency
+        character.inspiration = characterView._inspiration
+        
+        character.featsTraits = characterView._featsTraits
+        character.equipment = characterView._equipment
     }
 }

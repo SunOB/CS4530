@@ -70,7 +70,7 @@ class Character: NSObject, NSCoding {
     var totalHitDie : Int
     var ac : Int
     var initiative : Int
-    var speed : Int
+    var speed : String
     var deathSavesFailed : Int
     var deathSavesSuceeded : Int
     var proficiency : Int
@@ -113,7 +113,7 @@ class Character: NSObject, NSCoding {
         totalHitDie = 0
         ac = 0
         initiative = 0
-        speed = 0
+        speed = ""
         deathSavesFailed = 0
         deathSavesSuceeded = 0
         proficiency = 0
@@ -195,7 +195,7 @@ class Character: NSObject, NSCoding {
         totalHitDie = aDecoder.decodeInteger( forKey: "TotalHitDie")
         ac = aDecoder.decodeInteger( forKey: "AC")
         initiative = aDecoder.decodeInteger( forKey: "Initiative")
-        speed = aDecoder.decodeInteger( forKey: "Speed")
+        speed = aDecoder.decodeObject( forKey: "Speed") as! String
         deathSavesFailed = aDecoder.decodeInteger( forKey: "DeathSavesFailed")
         deathSavesSuceeded = aDecoder.decodeInteger( forKey: "DeathSavesSuceeded")
         proficiency = aDecoder.decodeInteger( forKey: "Proficiency")

@@ -37,6 +37,9 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
     override func loadView() {
         super.loadView()
         invalidAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
+        selectAlertController.addTextField { (textField: UITextField!) in
+            textField.keyboardType = UIKeyboardType.numberPad
+        }
         selectAlertController.textFields?[0].delegate = self
         selectAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         selectAlertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:
@@ -51,9 +54,7 @@ class BestiaryCollectionController : UIViewController, UICollectionViewDataSourc
         }))
     
             
-        selectAlertController.addTextField { (textField: UITextField!) in
-            textField.keyboardType = UIKeyboardType.numberPad
-        }
+
         
         view = CollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.navigationController?.navigationBar.isTranslucent = false

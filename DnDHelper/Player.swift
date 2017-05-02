@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+class Player: NSObject, NSCoding  {
+    var characters : [Character]
+    
+    override init() {
+        characters = []
+        super.init()
+    }
+    
+    //Encode data
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(characters, forKey: "Characters")
+    }
+    
+    //Decode data
+    required init?(coder aDecoder: NSCoder) {
+        characters = aDecoder.decodeObject(forKey: "Characters") as! [Character]
+    }
+}

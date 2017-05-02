@@ -82,7 +82,7 @@ class SavingThrowCell : UICollectionViewCell, UITextFieldDelegate {
         let w: CGFloat = r.width
         
         var temp : CGRect
-
+        (_, r) = r.divided(atDistance: h * 0.05, from: .maxYEdge)
         (_, r) = r.divided(atDistance: h * 0.1, from: .minYEdge)
         (_, r) = r.divided(atDistance: w * 0.05, from: .minXEdge)
         (temp, r) = r.divided(atDistance: h * 0.5, from: .minYEdge)
@@ -91,6 +91,7 @@ class SavingThrowCell : UICollectionViewCell, UITextFieldDelegate {
         (savingThrowLabel!.frame, temp) = temp.divided(atDistance: w - 20, from: .minXEdge)
         (_, r) = r.divided(atDistance: 12, from: .minXEdge)
         (savingThrowValue!.frame, r) = r.divided(atDistance: w - 20, from: .minXEdge)
+
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -21,6 +21,22 @@ class PlayerBackstoryView : UIScrollView {
     private var treasure : UILabel?
     private var treasureText : UITextView?
     
+    var _backstory : String {
+        return (backstoryText?.text)!
+    }
+    
+    var _allies :String {
+        return (alliesAndOrganizationsText?.text)!
+    }
+    
+    var _feats : String {
+        return (featsAndTraitsText?.text)!
+    }
+    
+    var _treasure : String {
+        return (treasureText?.text)!
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.white
@@ -86,6 +102,14 @@ class PlayerBackstoryView : UIScrollView {
     
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
+    }
+    
+    func update(backstory: String, alliesAndOrg: String, featsAndTraits: String, treasure: String) {
+        backstoryText?.text = backstory
+        alliesAndOrganizationsText?.text = alliesAndOrg
+        featsAndTraitsText?.text = featsAndTraits
+        treasureText?.text = treasure
+        super.setNeedsDisplay()
     }
     
 }

@@ -9,10 +9,10 @@
 import UIKit
 
 protocol DeathSavingDelegate {
-    func savesSelected(count: Int)
+    func savesSelected(count: Int, isFail: Bool)
 }
 
-class ScreenBlocker: UIView {
+class DeathSavingThrowButtonGroup: UIView {
     
     var delegate : DeathSavingDelegate!
     private var dashOneLabel : UILabel!
@@ -22,12 +22,13 @@ class ScreenBlocker: UIView {
     private var buttonTwo : UIButton!
     private var buttonThree : UIButton!
     
-    var isDeath : Bool
+    var isFail : Bool
     var numberSelected = 0
     
-    init (frame: CGRect, death : Bool) {
-        isDeath = death
-        
+    init (fail : Bool) {
+        isFail = fail
+        super.init(frame: CGRect.zero)
+
         dashOneLabel = UILabel()
         dashTwoLabel = UILabel()
         
@@ -36,7 +37,14 @@ class ScreenBlocker: UIView {
         buttonThree = UIButton()
         
         dashOneLabel.text = "-"
+        dashOneLabel.adjustsFontSizeToFitWidth = true
+        dashOneLabel.textAlignment = .center
+        
         dashTwoLabel.text = "-"
+        dashTwoLabel.adjustsFontSizeToFitWidth = true
+        dashTwoLabel.textAlignment = .center
+
+
         
         buttonOne.tag = 1
         buttonTwo.tag = 2
@@ -45,8 +53,7 @@ class ScreenBlocker: UIView {
         buttonOne.setBackgroundImage( #imageLiteral(resourceName: "EmptyCircle") , for: .normal)
         buttonTwo.setBackgroundImage(#imageLiteral(resourceName: "EmptyCircle"), for: .normal)
         buttonThree.setBackgroundImage(#imageLiteral(resourceName: "EmptyCircle"), for: .normal)
-        
-        super.init(frame: frame)
+
         backgroundColor = UIColor.white
         
         buttonOne?.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -70,17 +77,25 @@ class ScreenBlocker: UIView {
         var r = bounds
         let w = bounds.width
         
+        (buttonOne!.frame, r) = r.divided(atDistance: w * 0.2, from: .minXEdge)
         
+        (dashOneLabel!.frame, r) = r.divided(atDistance: w * 0.2, from: .minXEdge)
+        
+        (buttonTwo!.frame, r) = r.divided(atDistance: w * 0.2, from: .minXEdge)
+        
+        (dashTwoLabel!.frame, r) = r.divided(atDistance: w * 0.2, from: .minXEdge)
+        
+        (buttonThree!.frame, r) = r.divided(atDistance: w * 0.2, from: .minXEdge)
     }
     
     func buttonPressed(sender: UIButton) {
         if sender.tag != numberSelected {
             numberSelected = sender.tag
-            delegate.savesSelected(count: numberSelected)
+            delegate.savesSelected(count: numberSelected, isFail: isFail)
         }
         else {
             numberSelected = numberSelected - 1
-            delegate.savesSelected(count: numberSelected)
+            delegate.savesSelected(count: numberSelected, isFail: isFail)
         }
         setNeedsLayout()
     }
@@ -90,7 +105,7 @@ class ScreenBlocker: UIView {
         numberSelected = selected
         switch selected {
         case 1 :
-            if isDeath {
+            if isFail {
                 buttonOne.setBackgroundImage( #imageLiteral(resourceName: "DeathSaveFail") , for: .normal)
             }
             else {
@@ -99,7 +114,7 @@ class ScreenBlocker: UIView {
             buttonTwo.setBackgroundImage(#imageLiteral(resourceName: "EmptyCircle"), for: .normal)
             buttonThree.setBackgroundImage(#imageLiteral(resourceName: "EmptyCircle"), for: .normal)
         case 2 :
-            if isDeath {
+            if isFail {
                 buttonOne.setBackgroundImage( #imageLiteral(resourceName: "DeathSaveFail") , for: .normal)
                 buttonTwo.setBackgroundImage(#imageLiteral(resourceName: "DeathSaveFail"), for: .normal)
             }
@@ -109,7 +124,7 @@ class ScreenBlocker: UIView {
             }
             buttonThree.setBackgroundImage(#imageLiteral(resourceName: "EmptyCircle"), for: .normal)
         case 3 :
-            if isDeath {
+            if isFail {
                 buttonOne.setBackgroundImage( #imageLiteral(resourceName: "DeathSaveFail") , for: .normal)
                 buttonTwo.setBackgroundImage(#imageLiteral(resourceName: "DeathSaveFail"), for: .normal)
                 buttonThree.setBackgroundImage(#imageLiteral(resourceName: "DeathSaveFail"), for: .normal)

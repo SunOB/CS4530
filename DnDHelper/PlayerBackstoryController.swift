@@ -13,6 +13,8 @@ class PlayerBackstoryController: UIViewController {
         return view as! PlayerBackstoryView!
     }
     
+    var backstory = Backstory()
+    
     override func loadView() {
         super.loadView()
         view = PlayerBackstoryView()
@@ -26,20 +28,25 @@ class PlayerBackstoryController: UIViewController {
         self.title = "Background Information"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func backstoryPressed(sender: UIButton!) {
-        
-    }
-    
-    func spellbookPressed(sender: UIButton!) {
-        
-    }
-    
     func clickedBack(sender: UIBarButtonItem?) {
+        backstory.charBackstory = contentView._backstory
+        backstory.featsAndTraits = contentView._feats
+        backstory.allies = contentView._allies
+        backstory.treasure = contentView._treasure
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func update() {
+        contentView.update(backstory: backstory.charBackstory, alliesAndOrg: backstory.allies, featsAndTraits: backstory.featsAndTraits, treasure: backstory.treasure)
     }
 }

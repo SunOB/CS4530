@@ -15,23 +15,22 @@ protocol TitleScreenDelegate {
 
 class TitleScreen: UIView {
     var delegate : TitleScreenDelegate!
-    private var title : UILabel?
+    private var titleImage : UIImageView?
     
     private var dmButton : UIButton?
     private var playerButton : UIButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        title = UILabel()
+        titleImage = UIImageView()
         dmButton = UIButton()
         playerButton = UIButton()
+        
+        titleImage?.image = #imageLiteral(resourceName: "DragonSymbol")
         
         dmButton?.addTarget(self, action: #selector(dmButtonPressed), for: .touchUpInside)
         playerButton?.addTarget(self, action: #selector(playerButtonPressed), for: .touchUpInside)
         
-        title?.text = "D&D 5e Helper"
-        title?.adjustsFontSizeToFitWidth = true
-        title?.textAlignment = NSTextAlignment.center
         backgroundColor = UIColor.white
         
         dmButton?.setTitle("Dungeon Master", for: .normal)
@@ -42,7 +41,7 @@ class TitleScreen: UIView {
         playerButton?.backgroundColor = UIColor.blue
         //playerButton?.titleLabel?.textAlignment = NSTextAlignment.center
         
-        addSubview(title!)
+        addSubview(titleImage!)
         addSubview(dmButton!)
         addSubview(playerButton!)
     }
@@ -57,12 +56,19 @@ class TitleScreen: UIView {
         var r: CGRect = bounds
         let h: CGFloat = r.height
         let w: CGFloat = r.width
+        var temp : CGRect
         
-        (title!.frame, r) = r.divided(atDistance: h * 0.4, from: .minYEdge)
+        (_, r) = r.divided(atDistance: h * 0.15, from: .minYEdge)
+
+        (temp, r) = r.divided(atDistance: h * 0.4, from: .minYEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.1, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.1, from: .maxXEdge)
+
+        (titleImage!.frame, temp) = temp.divided(atDistance: h * 0.5, from: .minYEdge)
         
-        dmButton!.frame = CGRect(x: w * 0.2, y: title!.frame.maxY + 10, width: w * 0.6, height: 75)
+        dmButton!.frame = CGRect(x: w * 0.2, y: titleImage!.frame.maxY + 10, width: w * 0.6, height: 75)
         
-        playerButton!.frame = CGRect(x: w * 0.2, y: dmButton!.frame.maxY + 100, width: w * 0.6, height: 75 )
+        playerButton!.frame = CGRect(x: w * 0.2, y: dmButton!.frame.maxY + 50, width: w * 0.6, height: 75 )
     }
     
     override public func draw(_ rect: CGRect) {

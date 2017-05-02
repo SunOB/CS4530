@@ -12,9 +12,11 @@ protocol CharacterSheetDelegate {
     func backstoryPressed(sender: UIButton!)
     func spellbookPressed(sender: UIButton!)
     func addAttack()
+    func fail(count: Int)
+    func success(count: Int)
 }
 
-class CharacterSheet : UIView {
+class CharacterSheet : UIView, DeathSavingDelegate, UITextFieldDelegate {
     let fontSize : CGFloat = 7.5
     var charDelegate : CharacterSheetDelegate!
     
@@ -51,7 +53,6 @@ class CharacterSheet : UIView {
     private var savingThrowLabel : UILabel?
     private var skillLabel : UILabel?
     
-    // Do this shit
     private var featsAndFeaturesText : UITextView?
     private var equipmentText : UITextView?
     
@@ -90,9 +91,33 @@ class CharacterSheet : UIView {
     var skills : UICollectionView?
     
     var attackCollection : UICollectionView?
+    
+    var failDeathSavingThrow : DeathSavingThrowButtonGroup?
+    var successDeathSavingThrow : DeathSavingThrowButtonGroup?
+    
+    func updateDeathSaves(fails: Int, success: Int) {
+        failDeathSavingThrow?.updateButtons(selected: fails)
+        successDeathSavingThrow?.updateButtons(selected: success)
+    }
+    
+    func savesSelected(count: Int, isFail: Bool) {
+        if isFail {
+            charDelegate.fail(count: count)
+        }
+        else {
+            charDelegate.success(count: count)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        failDeathSavingThrow = DeathSavingThrowButtonGroup(fail: true)
+        failDeathSavingThrow?.delegate = self
+        
+        successDeathSavingThrow = DeathSavingThrowButtonGroup(fail: false)
+        successDeathSavingThrow?.delegate = self
+        
         
         backgroundColor = UIColor.white
         
@@ -162,19 +187,41 @@ class CharacterSheet : UIView {
         charClassText = UITextField()
         
         levelText = UITextField()
+        levelText?.delegate = self
+        
         expText = UITextField()
+        expText?.delegate = self
+        
         tempHPText = UITextField()
+        tempHPText?.delegate = self
+        
         curHPText = UITextField()
+        curHPText?.delegate = self
+        
         maxHPText = UITextField()
+        maxHPText?.delegate = self
+        
         hitDieSizeText = UITextField()
+        hitDieSizeText?.delegate = self
+        
         curHitDieText = UITextField()
+        curHitDieText?.delegate = self
+        
         totalHitDieText = UITextField()
+        totalHitDieText?.delegate = self
+        
         acText = UITextField()
+        acText?.delegate = self
         
         initiativeText = UITextField()
+        initiativeText?.delegate = self
+        
         speedText = UITextField()
         proficiencyText = UITextField()
+        proficiencyText?.delegate = self
+        
         inspirationText = UITextField()
+        inspirationText?.delegate = self
         
         backstory = UIButton()
         spellbook = UIButton()
@@ -264,7 +311,6 @@ class CharacterSheet : UIView {
         curHPText?.borderStyle = UITextBorderStyle.bezel
         maxHPText?.borderStyle = UITextBorderStyle.bezel
         hitDieSizeText?.borderStyle = UITextBorderStyle.bezel
-        genderText?.borderStyle = UITextBorderStyle.bezel
         curHitDieText?.borderStyle = UITextBorderStyle.bezel
         totalHitDieText?.borderStyle = UITextBorderStyle.bezel
         acText?.borderStyle = UITextBorderStyle.bezel
@@ -272,6 +318,27 @@ class CharacterSheet : UIView {
         speedText?.borderStyle = UITextBorderStyle.bezel
         proficiencyText?.borderStyle = UITextBorderStyle.bezel
         inspirationText?.borderStyle = UITextBorderStyle.bezel
+        
+        nameText?.font = UIFont(name: "Helvetica", size: fontSize)
+        gameText?.font = UIFont(name: "Helvetica", size: fontSize)
+        genderText?.font = UIFont(name: "Helvetica", size: fontSize)
+        alignmentText?.font = UIFont(name: "Helvetica", size: fontSize)
+        raceText?.font = UIFont(name: "Helvetica", size: fontSize)
+        charClassText?.font = UIFont(name: "Helvetica", size: fontSize)
+        backgroundText?.font = UIFont(name: "Helvetica", size: fontSize)
+        levelText?.font = UIFont(name: "Helvetica", size: fontSize)
+        expText?.font = UIFont(name: "Helvetica", size: fontSize)
+        tempHPText?.font = UIFont(name: "Helvetica", size: fontSize)
+        curHPText?.font = UIFont(name: "Helvetica", size: fontSize)
+        maxHPText?.font = UIFont(name: "Helvetica", size: fontSize)
+        hitDieSizeText?.font = UIFont(name: "Helvetica", size: fontSize)
+        curHitDieText?.font = UIFont(name: "Helvetica", size: fontSize)
+        totalHitDieText?.font = UIFont(name: "Helvetica", size: fontSize)
+        acText?.font = UIFont(name: "Helvetica", size: fontSize)
+        initiativeText?.font = UIFont(name: "Helvetica", size: fontSize)
+        speedText?.font = UIFont(name: "Helvetica", size: fontSize)
+        proficiencyText?.font = UIFont(name: "Helvetica", size: fontSize)
+        inspirationText?.font = UIFont(name: "Helvetica", size: fontSize)
         
         backstory?.setTitle("Backstory", for: .normal)
         backstory?.backgroundColor = UIColor.red
@@ -344,6 +411,9 @@ class CharacterSheet : UIView {
         addSubview(statLabel!)
         addSubview(savingThrowLabel!)
         addSubview(skillLabel!)
+        
+        addSubview(successDeathSavingThrow!)
+        addSubview(failDeathSavingThrow!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -437,12 +507,20 @@ class CharacterSheet : UIView {
         
         (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
         (temp, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
+        (deathSaves!.frame, temp) = temp.divided(atDistance: w * 0.2, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.025, from: .minXEdge)
+        (failDeathSavingThrow!.frame, temp) = temp.divided(atDistance: w * 0.3, from: .minXEdge)
+        (_, temp) = temp.divided(atDistance: w * 0.1, from: .minXEdge)
+        (successDeathSavingThrow!.frame, temp) = temp.divided(atDistance: w * 0.3, from: .minXEdge)
+        
+        (_, r) = r.divided(atDistance: h * 0.01, from: .minYEdge)
+        (temp, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
         (statLabel!.frame, temp) = temp.divided(atDistance: w * 0.25, from: .minXEdge)
         (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
         (savingThrowLabel!.frame, temp) = temp.divided(atDistance: w * 0.20, from: .minXEdge)
         (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
         (skillLabel!.frame, temp) = temp.divided(atDistance: w * 0.53, from: .minXEdge)
-        
+
         (temp, r) = r.divided(atDistance: h * 0.5, from: .minYEdge)
         (stats!.frame, temp) = temp.divided(atDistance: w * 0.25, from: .minXEdge)
         (_, temp) = temp.divided(atDistance: w * 0.01, from: .minXEdge)
@@ -452,7 +530,6 @@ class CharacterSheet : UIView {
         
         (_, r) = r.divided(atDistance: h * 0.025, from: .minYEdge)
         (temp, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
-
         (attacks!.frame, temp) = temp.divided(atDistance: w * 0.5, from: .minXEdge)
         (_, temp) = temp.divided(atDistance: w * 0.1, from: .minXEdge)
         (addAttack!.frame, temp) = temp.divided(atDistance: w * 0.2, from: .minXEdge)
@@ -465,9 +542,20 @@ class CharacterSheet : UIView {
         (equipment!.frame, r) = r.divided(atDistance: h * 0.05, from: .minYEdge)
         (equipmentText!.frame, r) = r.divided(atDistance: h * 0.2, from: .minYEdge)
 
+        (temp, r) = r.divided(atDistance: h * 0.1, from: .minYEdge)
 
+        (backstory!.frame, temp) = temp.divided(atDistance: w * 0.5, from: .minXEdge)
+        (_, backstory!.frame) = backstory!.frame.divided(atDistance: w * 0.025, from: .maxXEdge)
+        (_, backstory!.frame) = backstory!.frame.divided(atDistance: w * 0.025, from: .minXEdge)
+        (_, backstory!.frame) = backstory!.frame.divided(atDistance: h * 0.025, from: .minYEdge)
+        (_, backstory!.frame) = backstory!.frame.divided(atDistance: h * 0.025, from: .maxYEdge)
         
-        (backstory!.frame, r) = r.divided(atDistance: w, from: .minXEdge)
+        (spellbook!.frame, temp) = temp.divided(atDistance: w * 0.5, from: .minXEdge)
+        (_, spellbook!.frame) = spellbook!.frame.divided(atDistance: w * 0.025, from: .maxXEdge)
+        (_, spellbook!.frame) = spellbook!.frame.divided(atDistance: w * 0.025, from: .minXEdge)
+        (_, spellbook!.frame) = spellbook!.frame.divided(atDistance: h * 0.025, from: .minYEdge)
+        (_, spellbook!.frame) = spellbook!.frame.divided(atDistance: h * 0.025, from: .maxYEdge)
+
     }
     
     override public func draw(_ rect: CGRect) {
@@ -484,5 +572,173 @@ class CharacterSheet : UIView {
     
     func addAttackPressed(sender: UIButton!) {
         charDelegate.addAttack()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        return string == numberFiltered
+    }
+    
+    func update(name: String, game: String, gender: String, alignment: String, race: String, background: String, charClass: String, level: Int, exp: Int, tempHP: Int, curHP: Int, maxHP: Int, hitDieSize: Int, curHitDie : Int, totalHitDie: Int, ac: Int, initiative: Int, speed: String, proficiency: Int, inspiration : Int, featsAndFeatures: String, equipment: String, failedSaves: Int, successfulSaves: Int) {
+        
+        featsAndFeaturesText?.text = featsAndFeatures
+        equipmentText?.text = equipment
+        
+        //Text Fields
+        nameText?.text = name
+        gameText?.text = game
+        genderText?.text = gender
+        alignmentText?.text = alignment
+        raceText?.text = race
+        backgroundText?.text = background
+        charClassText?.text = charClass
+        
+        levelText?.text = String(level)
+        expText?.text = String(exp)
+        tempHPText?.text = String(tempHP)
+        curHPText?.text = String(curHP)
+        maxHPText?.text = String(maxHP)
+        hitDieSizeText?.text = String(hitDieSize)
+        curHitDieText?.text = String(curHitDie)
+        totalHitDieText?.text = String(totalHitDie)
+        acText?.text = String(ac)
+        
+        initiativeText?.text = String(initiative)
+        speedText?.text = speed
+        proficiencyText?.text = String(proficiency)
+        inspirationText?.text = String(inspiration)
+        updateDeathSaves(fails: failedSaves, success: successfulSaves)
+        
+        setNeedsDisplay()
+        
+    }
+    
+    var _game: String {
+        return (gameText?.text)!
+    }
+    var _name: String {
+        return (nameText?.text)!
+    }
+    var _gender: String {
+        return (genderText?.text)!
+    }
+    var _alignment: String {
+        return (alignmentText?.text)!
+    }
+    var _race: String {
+        return (raceText?.text)!
+    }
+    var _background: String {
+        return (backgroundText?.text)!
+    }
+    var _charClass: String {
+        return (charClassText?.text)!
+    }
+    
+    var _level: Int {
+        if Int((levelText?.text!)!) == nil {
+            return 0
+        }
+        return Int((levelText!.text)!)!
+    }
+    
+    var _exp: Int {
+        if Int((expText?.text!)!) == nil {
+            return 0
+        }
+        return Int((expText!.text)!)!
+    }
+    
+    var _tempHP: Int {
+        if Int((tempHPText?.text!)!) == nil {
+            return 0
+        }
+        return Int((tempHPText!.text)!)!
+    }
+    
+    var _curHP: Int {
+        if Int((curHPText?.text!)!) == nil {
+            return 0
+        }
+        return Int((curHPText!.text)!)!
+    }
+    
+    var _maxHP: Int {
+        if Int((maxHPText?.text!)!) == nil {
+            return 0
+        }
+        return Int((maxHPText!.text)!)!
+    }
+    
+    var _hitDieSize: Int {
+        if Int((hitDieSizeText?.text!)!) == nil {
+            return 0
+        }
+        return Int((hitDieSizeText!.text)!)!
+    }
+    
+    var _curHitDie: Int {
+        if Int((curHitDieText?.text!)!) == nil {
+            return 0
+        }
+        return Int((curHitDieText!.text)!)!
+    }
+    
+    var _totalHitDie: Int {
+        if Int((totalHitDieText?.text!)!) == nil {
+            return 0
+        }
+        return Int((totalHitDieText!.text)!)!
+    }
+    
+    var _ac: Int {
+        if Int((acText?.text!)!) == nil {
+            return 0
+        }
+        return Int((acText!.text)!)!
+    }
+    
+    var _initiative: Int {
+        if Int((initiativeText?.text!)!) == nil {
+            return 0
+        }
+        return Int((initiativeText!.text)!)!
+    }
+    
+    var _speed: String {
+        return (speedText?.text)!
+    }
+    
+    var _deathSavesFailed: Int {
+        return (failDeathSavingThrow?.numberSelected)!
+    }
+    
+    var _deathSavesSuceeded: Int {
+        return (successDeathSavingThrow?.numberSelected)!
+    }
+    
+    var _proficiency: Int {
+        if Int((proficiencyText?.text!)!) == nil {
+            return 0
+        }
+        return Int((proficiencyText!.text)!)!
+    }
+    
+    var _inspiration: Int {
+        if Int((inspirationText?.text!)!) == nil {
+            return 0
+        }
+        return Int((inspirationText!.text)!)!
+    }
+    
+    var _featsTraits: String {
+        return (featsAndFeaturesText?.text)!
+    }
+    
+    var _equipment: String {
+        return (equipmentText?.text)!
     }
 }

@@ -10,12 +10,10 @@ import Foundation
 
 class Spell : NSObject, NSCoding {
     var spellName : String
-    var spellDesc : String
     var isPrepared : Bool
     
     override init () {
         spellName = ""
-        spellDesc = ""
         isPrepared = false
         super.init()
     }
@@ -23,14 +21,12 @@ class Spell : NSObject, NSCoding {
     //Encode data
     func encode(with aCoder: NSCoder) {
         aCoder.encode(spellName, forKey: "SpellName")
-        aCoder.encode(spellDesc, forKey: "SpellDesc")
         aCoder.encode(isPrepared, forKey: "IsPrepared")
     }
     
     //Decode data
     required init?(coder aDecoder: NSCoder) {
         spellName = aDecoder.decodeObject(forKey: "SpellName") as! String
-        spellDesc = aDecoder.decodeObject(forKey: "SpellDesc") as! String
         isPrepared = aDecoder.decodeBool(forKey: "IsPrepared")
     }
 }
